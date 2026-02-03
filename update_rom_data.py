@@ -139,7 +139,6 @@ def extract_rom_data(excel_path):
         "workingCapitalFreed": 11666670,
         "costOfCapital": 0.035,
         "annualCapitalSavings": 408333,
-        "vendorInquiryFTEs": 15,
         "deflectionRateTarget": 0.65,
         "apTimeSavingsTarget": 0.25,
         "invoiceCycleCurrentDays": 5,

@@ -179,7 +179,7 @@
         <div class="grid-3">
           <div class="info-box info-orange" style="margin: 0;">
             <div class="title">Vendor Inquiry Inefficiencies</div>
-            <p>15 FTEs manage largely repetitive inquiries with 5-10 day response times via email, impacting vendor experience and delaying operations.</p>
+            <p>A significant team manages largely repetitive inquiries with 5-10 day response times via email, impacting vendor experience and delaying operations.</p>
           </div>
           <div class="info-box info-blue" style="margin: 0;">
             <div class="title">Invoicing Delays Impact Cash Flow</div>
@@ -217,10 +217,6 @@
           </div>
           <div>
             <table>
-              <tr>
-                <td>FTEs on Vendor Inquiries</td>
-                <td class="text-right font-bold" id="ch-ftes">15</td>
-              </tr>
               <tr>
                 <td>Portal Response Time</td>
                 <td class="text-right font-bold text-danger">2-3 days</td>
@@ -513,7 +509,6 @@
 
         document.getElementById('ch-dso').textContent = business.currentDSO + ' days';
         document.getElementById('ch-receivables').textContent = '$' + (business.receivables / 1000000) + 'M';
-        document.getElementById('ch-ftes').textContent = business.vendorInquiryFTEs;
       } catch (error) {
         console.error('Error loading data:', error);
       }

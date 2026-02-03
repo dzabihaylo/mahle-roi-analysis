@@ -75,7 +75,7 @@
     <div class="tab-nav">
       <button class="tab-btn active" onclick="showTab('summary')">Executive Summary</button>
       <button class="tab-btn" onclick="showTab('working-capital')">Working Capital</button>
-      <button class="tab-btn" onclick="showTab('efficiency')">FTE Efficiency</button>
+      <button class="tab-btn" onclick="showTab('efficiency')">Operational Efficiency</button>
       <button class="tab-btn" onclick="showTab('timeline')">Payback Timeline</button>
     </div>
 
@@ -134,7 +134,7 @@
           <div>
             <div class="font-bold text-success mb-8">AP Productivity ($180K/yr)</div>
             <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
-              <li>• 15 FTEs on vendor inquiries</li>
+              <li>• Large team managing vendor inquiries</li>
               <li>• 60-70% query deflection to AI</li>
               <li>• 20-30% team time savings</li>
               <li>• Capacity redeployed to exceptions</li>
@@ -208,15 +208,15 @@
       </div>
     </div>
 
-    <!-- FTE Efficiency Tab -->
+    <!-- Operational Efficiency Tab -->
     <div id="efficiency" class="tab-content">
       <div class="grid-2 mb-24">
         <div class="card">
           <h3>Vendor Inquiry Handling</h3>
           <div class="mb-16">
             <div class="flex justify-between mb-8" style="font-size: 14px;">
-              <span>Current: <span id="eff-ftes">15</span> FTEs</span>
-              <span class="text-danger">100% manual</span>
+              <span>Current: 100% manual processing</span>
+              <span class="text-danger">High volume</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill progress-red" style="width: 100%;"></div>
@@ -224,7 +224,7 @@
           </div>
           <div class="mb-16">
             <div class="flex justify-between mb-8" style="font-size: 14px;">
-              <span>Post-AI: 5-6 FTEs on exceptions</span>
+              <span>Post-AI: Team focuses on exceptions</span>
               <span class="text-success">60-70% automated</span>
             </div>
             <div class="progress-bar" style="display: flex;">
@@ -566,7 +566,6 @@
         document.getElementById('wc-capital-freed').textContent = '$' + business.workingCapitalFreed.toLocaleString();
 
         // Efficiency tab
-        document.getElementById('eff-ftes').textContent = business.vendorInquiryFTEs;
         document.getElementById('eff-value').textContent = formatCurrency(value.apProductivityValue) + '+';
 
         // Footer

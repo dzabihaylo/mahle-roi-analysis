@@ -115,10 +115,6 @@
               <td class="text-right font-bold text-danger">5-10 days</td>
             </tr>
             <tr>
-              <td>FTEs on Vendor Inquiries</td>
-              <td class="text-right font-bold" id="current-ftes">15</td>
-            </tr>
-            <tr>
               <td>Invoice Cycle Time</td>
               <td class="text-right font-bold text-danger">3-7 days</td>
             </tr>
@@ -266,7 +262,6 @@
         // Update current state
         document.getElementById('current-dso').textContent = business.currentDSO + ' days';
         document.getElementById('current-receivables').textContent = formatCurrency(business.receivables);
-        document.getElementById('current-ftes').textContent = business.vendorInquiryFTEs;
 
         // Update targets
         document.getElementById('target-dso').textContent = business.targetDSOReduction + ' days';

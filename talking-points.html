@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Guide | MAHLE AI Finance Transformation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .talk-track {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+    }
+    .objection-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .objection-header {
+      background: #fef2f2;
+      padding: 16px 20px;
+      font-weight: 600;
+      color: #991b1b;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .objection-header:hover { background: #fee2e2; }
+    .objection-body {
+      padding: 20px;
+      background: white;
+      display: none;
+    }
+    .objection-body.show { display: block; }
+    .meeting-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .flow-item {
+      display: flex;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .flow-item:last-child { border-bottom: none; }
+    .flow-time {
+      min-width: 80px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .flow-topic { font-weight: 500; min-width: 200px; }
+    .flow-owner { color: var(--text-muted); }
+    .question-list {
+      list-style: none;
+    }
+    .question-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+    }
+    .question-list li:last-child { border-bottom: none; }
+    .question-num {
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+      color: var(--text-secondary);
+    }
+    .tab-btn:hover { background: #f1f5f9; }
+    .tab-btn.active { background: var(--primary); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-brand-icon">M</div>
+        <div>
+          <div class="nav-brand-text">MAHLE × Provectus</div>
+          <div class="nav-brand-sub">AI Finance Transformation</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="roi-analysis.html" class="nav-link">ROI Analysis</a>
+        <a href="talking-points.html" class="nav-link active">Meeting Guide</a>
+        <a href="deal-summary.html" class="nav-link">Deal Summary</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Meeting Guide</h1>
+      <p>Talking points, objection handlers, and closing strategy for your meeting with Andreas Steiner (CFO) and Mario Curcic</p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('opening')">Opening</button>
+      <button class="tab-btn" onclick="showTab('validation')">Business Case</button>
+      <button class="tab-btn" onclick="showTab('objections')">Objection Handlers</button>
+      <button class="tab-btn" onclick="showTab('closing')">Closing Strategy</button>
+      <button class="tab-btn" onclick="showTab('flow')">Meeting Flow</button>
+    </div>
+
+    <!-- Opening Tab -->
+    <div id="opening" class="tab-content active">
+      <div class="card mb-24">
+        <h3>Opening Frame (2 minutes)</h3>
+        <p class="text-muted mb-16">Set the tone: you've done the homework together, today is about alignment and next steps.</p>
+        <div class="talk-track">
+          "Andreas, Mario – thank you for the time you've invested in this process. Based on our discovery sessions and the data your team provided, we've refined our approach to focus on the two use cases with the clearest path to ROI. Today I'd like to walk through our validation of the business case, confirm we're aligned on scope and investment, and discuss next steps to get started."
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Key Message</h3>
+        <div class="callout callout-blue">
+          <h4>The Core Pitch</h4>
+          <p>"We've done the homework together. Today is about confirming we're aligned on the value, the approach, and the path forward."</p>
+        </div>
+        <div class="grid-3 mt-24">
+          <div class="info-box info-blue">
+            <div class="title">For Andreas (CFO)</div>
+            <p>Focus on working capital impact, payback period, and risk mitigation through pilot structure</p>
+          </div>
+          <div class="info-box info-green">
+            <div class="title">For Mario (COE Lead)</div>
+            <p>Emphasize operational efficiency, team productivity gains, and vendor satisfaction improvement</p>
+          </div>
+          <div class="info-box info-purple">
+            <div class="title">For Both</div>
+            <p>12-week pilot = low-risk validation with clear go/no-go metrics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Case Validation Tab -->
+    <div id="validation" class="tab-content">
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="badge badge-green">Quick Win</span>
+          </div>
+          <h3>Use Case 1: AI Vendor Communication Bot</h3>
+
+          <div class="section-title mt-24" style="font-size: 14px;">The Problem (Validated)</div>
+          <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+            <li>• 15 FTEs currently manage vendor inquiries</li>
+            <li>• Response times: 2-3 days via portal, 5-10 days via email</li>
+            <li>• Most frequent: invoice status, payment remittance, submission process</li>
+          </ul>
+
+          <div class="section-title mt-24" style="font-size: 14px;">Target Outcomes</div>
+          <table style="font-size: 14px;">
+            <tr>
+              <td>Deflection rate</td>
+              <td class="text-right font-bold text-success">60-70%</td>
+            </tr>
+            <tr>
+              <td>Response time</td>
+              <td class="text-right font-bold text-success">< 5 minutes</td>
+            </tr>
+            <tr>
+              <td>AP time savings</td>
+              <td class="text-right font-bold text-success">20-30%</td>
+            </tr>
+          </table>
+
+          <div class="talk-track mt-24">
+            "Mario, based on the inquiry data your team shared, does a 60-70% deflection rate for these four query types feel achievable?"
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="badge badge-blue">Strategic Win</span>
+          </div>
+          <h3>Use Case 2: Order-to-Cash AI Automation</h3>
+
+          <div class="section-title mt-24" style="font-size: 14px;">The Problem (Validated)</div>
+          <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+            <li>• <span id="val-receivables">$70M</span> trapped in outstanding receivables</li>
+            <li>• DSO of <span id="val-dso">60</span> days (industry benchmark: 45-50)</li>
+            <li>• Invoice delays of 3-7 days from ECN changes</li>
+          </ul>
+
+          <div class="section-title mt-24" style="font-size: 14px;">Target Outcomes</div>
+          <table style="font-size: 14px;">
+            <tr>
+              <td>Invoice cycle time</td>
+              <td class="text-right font-bold text-success">30-40% reduction</td>
+            </tr>
+            <tr>
+              <td>AI accuracy</td>
+              <td class="text-right font-bold text-success">80%+ vs manual</td>
+            </tr>
+            <tr>
+              <td>Working capital</td>
+              <td class="text-right font-bold text-success">Faster unlock</td>
+            </tr>
+          </table>
+
+          <div class="talk-track mt-24">
+            "Andreas, if we reduce invoice cycle time by even 30%, you're looking at accelerating collection on that $70M in receivables. A 10-day DSO improvement could free up approximately $11-12M in working capital."
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Investment Summary</h3>
+        <div class="grid-3">
+          <div>
+            <div class="metric-label">Investment Range</div>
+            <div class="metric-value" id="val-investment">$260K-$370K</div>
+            <div class="metric-sub">Average: $300K</div>
+          </div>
+          <div>
+            <div class="metric-label">Duration</div>
+            <div class="metric-value" id="val-weeks">12 weeks</div>
+            <div class="metric-sub">Range: 10-14 weeks</div>
+          </div>
+          <div>
+            <div class="metric-label">Monthly Run Rate</div>
+            <div class="metric-value">~$100K</div>
+            <div class="metric-sub">3-month engagement</div>
+          </div>
+        </div>
+
+        <div class="callout callout-green mt-24">
+          <h4>Value vs. Investment Frame</h4>
+          <p><strong>Investment:</strong> ~$300K &nbsp;|&nbsp; <strong>Year 1 Value:</strong> $650K+ &nbsp;|&nbsp; <strong>Payback:</strong> 4-6 months post-pilot</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Objection Handlers Tab -->
+    <div id="objections" class="tab-content">
+      <div class="card mb-24">
+        <h3>Common Objections & Responses</h3>
+        <p class="text-muted">Click each objection to see the recommended response.</p>
+      </div>
+
+      <div class="objection-card">
+        <div class="objection-header" onclick="toggleObjection(this)">
+          "The budget is higher than expected"
+          <span>+</span>
+        </div>
+        <div class="objection-body">
+          <div class="talk-track">
+            "I understand. Let me reframe this: the $300K investment is for a 12-week pilot that addresses two use cases in parallel. If we hit our targets – 60% vendor inquiry deflection and 30% invoice cycle time reduction – the ROI is substantial. We're also structured for a clear go/no-go at 12 weeks. You're not committing to a multi-year transformation; you're buying validated learning and measurable results."
+          </div>
+          <div class="info-box info-blue mt-16">
+            <div class="title">Alternative Offer</div>
+            <p>"We could phase this differently – start with just the Vendor Communication Bot at roughly half the investment, prove value in 8 weeks, then decide on O2C. But given the working capital impact of O2C, running them in parallel gives you faster time-to-value on your biggest dollar opportunity."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <div class="objection-header" onclick="toggleObjection(this)">
+          "Can we do this faster/cheaper?"
+          <span>+</span>
+        </div>
+        <div class="objection-body">
+          <div class="talk-track">
+            "The 12-week timeline is already aggressive. Weeks 1-2 are discovery and setup – that's non-negotiable for SAP integration. We've scoped to minimum viable – ECN-focused invoicing, not the full invoice population; high-volume vendor queries, not every edge case. Cutting further risks either quality or measurable results at the end."
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <div class="objection-header" onclick="toggleObjection(this)">
+          "We need to socialize this internally"
+          <span>+</span>
+        </div>
+        <div class="objection-body">
+          <div class="talk-track">
+            "Absolutely. What would be most helpful for you to share with [stakeholder]? We can provide a one-page summary, the ROI model, or join a brief call if that would help move things forward."
+          </div>
+          <div class="info-box info-green mt-16">
+            <div class="title">Follow-up Question</div>
+            <p>"What's the timeline for that internal discussion? We'd like to finalize the SOW by mid-March to hit an April 6 kick-off."</p>
+          </div>
+          <div class="mt-16">
+            <a href="deal-summary.html" class="btn btn-secondary">View Shareable One-Pager →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <div class="objection-header" onclick="toggleObjection(this)">
+          "What if it doesn't work?"
+          <span>+</span>
+        </div>
+        <div class="objection-body">
+          <div class="talk-track">
+            "That's exactly why we structured this as a 12-week pilot with clear success metrics. At week 12, we'll have processed 100+ invoices through the AI workflow and measured deflection rates on the chatbot. If we don't hit 80% accuracy on invoice generation or 60% deflection, you'll know – and you'll have learned exactly where the gaps are for any future investment. The pilot is designed to de-risk, not lock you in."
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card">
+        <div class="objection-header" onclick="toggleObjection(this)">
+          "We're also talking to other vendors"
+          <span>+</span>
+        </div>
+        <div class="objection-body">
+          <div class="talk-track">
+            "That's smart due diligence. I'd encourage you to compare a few things: First, specificity of approach – we've already mapped your O2C process, identified ECN as the key bottleneck, and scoped to your SAP environment. Second, risk structure – our 12-week pilot with clear metrics means you're not locked into a long-term commitment. Third, time-to-value – with an April kick-off, you're seeing results by late June."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing Strategy Tab -->
+    <div id="closing" class="tab-content">
+      <div class="card mb-24">
+        <h3>The Ask</h3>
+        <div class="talk-track">
+          "Andreas, based on what we've validated together, I believe we're aligned on the problem, the approach, and the value. Here's what I'd like to propose as next steps:
+          <br><br>
+          1. <strong>This week:</strong> Confirm scope alignment and budget range ($260-300K)<br>
+          2. <strong>By end of February:</strong> Complete MSA terms and conditions<br>
+          3. <strong>Early March:</strong> We deliver the SOW for your review<br>
+          4. <strong>Mid-March:</strong> Finalize both agreements<br>
+          5. <strong>April 6:</strong> Kick off
+          <br><br>
+          Does that timeline work for you? Is there anything that would prevent us from moving forward on this path?"
+        </div>
+      </div>
+
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <h3>If They're Ready to Commit</h3>
+          <div class="talk-track">
+            "Excellent. Let's lock in the timeline. I'll have our team send over the MSA template this week, and we can schedule a brief call to walk through terms. Who on your side should be involved in that review?"
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>If They Need More Time</h3>
+          <div class="talk-track">
+            "I understand. What specific information would help you make a final decision? And what's a realistic timeline for you to complete your internal review? I want to make sure we're set up for an April kick-off."
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Listen For</h3>
+        <ul class="question-list">
+          <li>
+            <span class="question-num">1</span>
+            <span><strong>Budget approval authority</strong> – does Andreas need additional sign-off?</span>
+          </li>
+          <li>
+            <span class="question-num">2</span>
+            <span><strong>Procurement process</strong> – any vendor onboarding requirements?</span>
+          </li>
+          <li>
+            <span class="question-num">3</span>
+            <span><strong>Competing priorities</strong> – is there internal competition for budget/resources?</span>
+          </li>
+          <li>
+            <span class="question-num">4</span>
+            <span><strong>Technical concerns</strong> – any IT governance issues with deployment model?</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card mt-24">
+        <h3>Key Questions to Ask MAHLE</h3>
+        <ul class="question-list">
+          <li>
+            <span class="question-num">1</span>
+            <span>"Are there any stakeholders beyond this room who need to approve the investment?"</span>
+          </li>
+          <li>
+            <span class="question-num">2</span>
+            <span>"Have you identified the Finance team members who would participate in UAT during weeks 6-8?"</span>
+          </li>
+          <li>
+            <span class="question-num">3</span>
+            <span>"On the deployment model – are you leaning toward Provectus-hosted or in-house?"</span>
+          </li>
+          <li>
+            <span class="question-num">4</span>
+            <span>"Is there anything about the business case or approach that doesn't feel right to you?"</span>
+          </li>
+          <li>
+            <span class="question-num">5</span>
+            <span>"What would make this a clear 'yes' for you today?"</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Meeting Flow Tab -->
+    <div id="flow" class="tab-content">
+      <div class="card">
+        <h3>Recommended Meeting Flow (60 minutes)</h3>
+        <div class="meeting-flow">
+          <div class="flow-item">
+            <span class="flow-time">0-5 min</span>
+            <span class="flow-topic">Opening, agenda confirmation</span>
+            <span class="flow-owner">You</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">5-15 min</span>
+            <span class="flow-topic">Business case validation – review numbers together</span>
+            <span class="flow-owner">You + Mario</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">15-25 min</span>
+            <span class="flow-topic">Investment and timeline walkthrough</span>
+            <span class="flow-owner">You</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">25-35 min</span>
+            <span class="flow-topic">Q&A, objection handling</span>
+            <span class="flow-owner">Andreas/Mario</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">35-45 min</span>
+            <span class="flow-topic">Deployment model decision</span>
+            <span class="flow-owner">Mario</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">45-55 min</span>
+            <span class="flow-topic">Next steps and commitment</span>
+            <span class="flow-owner">You</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-time">55-60 min</span>
+            <span class="flow-topic">Close and action items</span>
+            <span class="flow-owner">You</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue mt-24">
+        <h4>Don't Forget</h4>
+        <p>
+          • Have the <a href="deal-summary.html">deal summary one-pager</a> ready to share<br>
+          • Have the <a href="roi-analysis.html">ROI analysis</a> ready for detailed questions<br>
+          • Confirm who will own the MSA review on MAHLE's side<br>
+          • Get a calendar hold for the SOW review meeting before leaving
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>MAHLE AI Finance Transformation | Provectus | February 2026</p>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Objection toggle
+    function toggleObjection(header) {
+      const body = header.nextElementSibling;
+      const icon = header.querySelector('span');
+      body.classList.toggle('show');
+      icon.textContent = body.classList.contains('show') ? '−' : '+';
+    }
+
+    // Load ROM data
+    async function loadData() {
+      try {
+        const response = await fetch('data/rom-data.json');
+        const data = await response.json();
+        const business = data.businessCase;
+        const summary = data.summary;
+
+        document.getElementById('val-receivables').textContent = '$' + (business.receivables / 1000000) + 'M';
+        document.getElementById('val-dso').textContent = business.currentDSO;
+        document.getElementById('val-investment').textContent =
+          '$' + (summary.investmentLow / 1000) + 'K-$' + (summary.investmentHigh / 1000) + 'K';
+        document.getElementById('val-weeks').textContent = summary.weeksAvg + ' weeks';
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

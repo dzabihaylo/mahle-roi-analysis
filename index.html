@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAHLE AI Finance Transformation | Provectus</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-brand-icon">M</div>
+        <div>
+          <div class="nav-brand-text">MAHLE × Provectus</div>
+          <div class="nav-brand-sub">AI Finance Transformation</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Overview</a>
+        <a href="roi-analysis.html" class="nav-link">ROI Analysis</a>
+        <a href="talking-points.html" class="nav-link">Meeting Guide</a>
+        <a href="deal-summary.html" class="nav-link">Deal Summary</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="page-header">
+      <h1>Unlocking Working Capital & Supplier Satisfaction</h1>
+      <p>12-week parallel pilot targeting your highest-impact finance use cases</p>
+      <div class="flex gap-8 mt-16 flex-wrap">
+        <span class="badge badge-blue">12-Week Pilot</span>
+        <span class="badge badge-green" id="badge-investment">$300K Investment</span>
+        <span class="badge badge-purple">2 Use Cases</span>
+        <span class="badge badge-orange">April 2026 Kick-off</span>
+      </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="grid-4 mb-32">
+      <div class="metric-card">
+        <div class="metric-label">Pilot Investment</div>
+        <div class="metric-value" id="metric-investment">$300K</div>
+        <div class="metric-sub" id="metric-investment-range">Range: $260K-$370K</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Year 1 Value</div>
+        <div class="metric-value text-success" id="metric-year1">$650K+</div>
+        <div class="metric-sub">Conservative estimate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Payback Period</div>
+        <div class="metric-value text-primary" id="metric-payback">4-6 mo</div>
+        <div class="metric-sub">Post-pilot completion</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Working Capital Freed</div>
+        <div class="metric-value text-purple" id="metric-capital">$11.7M</div>
+        <div class="metric-sub">From DSO improvement</div>
+      </div>
+    </div>
+
+    <!-- Navigation Cards -->
+    <h2 class="section-title">Explore the Business Case</h2>
+    <div class="grid-3 mb-32">
+      <a href="roi-analysis.html" class="card card-clickable">
+        <div class="card-icon card-icon-blue">📊</div>
+        <h3>ROI Analysis</h3>
+        <p class="text-muted">Detailed financial projections, working capital impact, efficiency gains, and payback timeline</p>
+        <div class="mt-16">
+          <span class="badge badge-blue">View Analysis →</span>
+        </div>
+      </a>
+
+      <a href="talking-points.html" class="card card-clickable">
+        <div class="card-icon card-icon-green">💬</div>
+        <h3>Meeting Guide</h3>
+        <p class="text-muted">Talking points, objection handlers, closing strategy, and recommended meeting flow</p>
+        <div class="mt-16">
+          <span class="badge badge-green">View Guide →</span>
+        </div>
+      </a>
+
+      <a href="deal-summary.html" class="card card-clickable">
+        <div class="card-icon card-icon-purple">📋</div>
+        <h3>Deal Summary</h3>
+        <p class="text-muted">One-page overview of scope, investment, timeline, and next steps</p>
+        <div class="mt-16">
+          <span class="badge badge-purple">View Summary →</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- The Opportunity -->
+    <div class="section">
+      <h2 class="section-title">The Opportunity</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Current Challenges</h3>
+          <table>
+            <tr>
+              <td>Days Sales Outstanding (DSO)</td>
+              <td class="text-right font-bold text-danger" id="current-dso">60 days</td>
+            </tr>
+            <tr>
+              <td>Trapped Receivables</td>
+              <td class="text-right font-bold" id="current-receivables">$70M</td>
+            </tr>
+            <tr>
+              <td>Vendor Inquiry Response Time</td>
+              <td class="text-right font-bold text-danger">5-10 days</td>
+            </tr>
+            <tr>
+              <td>FTEs on Vendor Inquiries</td>
+              <td class="text-right font-bold" id="current-ftes">15</td>
+            </tr>
+            <tr>
+              <td>Invoice Cycle Time</td>
+              <td class="text-right font-bold text-danger">3-7 days</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Target Outcomes</h3>
+          <table>
+            <tr>
+              <td>DSO Reduction</td>
+              <td class="text-right font-bold text-success" id="target-dso">10 days</td>
+            </tr>
+            <tr>
+              <td>Working Capital Freed</td>
+              <td class="text-right font-bold text-success" id="target-capital">$11.7M</td>
+            </tr>
+            <tr>
+              <td>Vendor Response Time</td>
+              <td class="text-right font-bold text-success">< 5 minutes</td>
+            </tr>
+            <tr>
+              <td>Query Deflection Rate</td>
+              <td class="text-right font-bold text-success" id="target-deflection">60-70%</td>
+            </tr>
+            <tr>
+              <td>Invoice Cycle Reduction</td>
+              <td class="text-right font-bold text-success">30-40%</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2 class="section-title">Pilot Use Cases</h2>
+      <div class="grid-2">
+        <a href="roi-analysis.html#efficiency" class="card card-clickable">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="badge badge-green">Quick Win</span>
+          </div>
+          <h3>AI Vendor Communication Bot</h3>
+          <p class="text-muted mb-16">AI-powered chatbot handling invoice status and payment queries in real-time, reducing response times from days to minutes.</p>
+          <div class="info-box info-green">
+            <div class="title">Target Outcomes</div>
+            <p>60-70% deflection rate • < 5 min response • 20-30% AP time savings</p>
+          </div>
+        </a>
+
+        <a href="roi-analysis.html#working-capital" class="card card-clickable">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="badge badge-blue">Strategic Win</span>
+          </div>
+          <h3>Order-to-Cash AI Automation</h3>
+          <p class="text-muted mb-16">AI identifies ECNs, calculates pricing impact, and generates invoice drafts for Finance review via Power Apps.</p>
+          <div class="info-box info-blue">
+            <div class="title">Target Outcomes</div>
+            <p>30-40% cycle time reduction • 80%+ AI accuracy • Faster cash collection</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Investment vs Value Chart -->
+    <div class="section">
+      <h2 class="section-title">Investment vs. Projected Value</h2>
+      <div class="card">
+        <div class="chart-container" style="height: 320px;">
+          <canvas id="overviewChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Preview -->
+    <div class="section">
+      <h2 class="section-title">Timeline to Value</h2>
+      <div class="grid-4">
+        <div class="card" style="border-left: 4px solid var(--primary);">
+          <div class="metric-label">Weeks 1-2</div>
+          <h3>Discovery & Setup</h3>
+          <p class="text-muted" style="font-size: 13px;">Kickoff, data source ID, environment setup</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--purple);">
+          <div class="metric-label">Weeks 3-5</div>
+          <h3>AI Development</h3>
+          <p class="text-muted" style="font-size: 13px;">SAP integration, AI models, prompt engineering</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--warning);">
+          <div class="metric-label">Weeks 6-8</div>
+          <h3>UI & Testing</h3>
+          <p class="text-muted" style="font-size: 13px;">Power Apps interface, workflow testing, UAT</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--success);">
+          <div class="metric-label">Weeks 9-12</div>
+          <h3>Live Pilot</h3>
+          <p class="text-muted" style="font-size: 13px;">100+ invoices processed, measure results</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="callout callout-blue">
+      <h4>Ready to Move Forward?</h4>
+      <p>Review the <a href="deal-summary.html">Deal Summary</a> for scope, investment, and next steps, or explore the <a href="roi-analysis.html">ROI Analysis</a> for detailed financial projections.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>MAHLE AI Finance Transformation | Provectus | February 2026</p>
+      <p class="mt-16" style="font-size: 12px;">Data sourced from ROM v1.0 • Last updated: <span id="last-updated">2026-02-03</span></p>
+    </div>
+  </div>
+
+  <script>
+    // Load ROM data and populate page
+    async function loadData() {
+      try {
+        const response = await fetch('data/rom-data.json');
+        const data = await response.json();
+
+        // Update metrics from JSON
+        const summary = data.summary;
+        const business = data.businessCase;
+        const value = data.valueProjections;
+
+        // Format currency
+        const formatCurrency = (num) => {
+          if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+          if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+          return '$' + num;
+        };
+
+        // Update investment displays
+        document.getElementById('metric-investment').textContent = formatCurrency(summary.investmentAvg);
+        document.getElementById('metric-investment-range').textContent =
+          `Range: ${formatCurrency(summary.investmentLow)}-${formatCurrency(summary.investmentHigh)}`;
+        document.getElementById('badge-investment').textContent = formatCurrency(summary.investmentAvg) + ' Investment';
+
+        // Update value metrics
+        document.getElementById('metric-year1').textContent = formatCurrency(value.totalYear1Value) + '+';
+        document.getElementById('metric-payback').textContent = value.paybackMonths + ' mo';
+        document.getElementById('metric-capital').textContent = formatCurrency(business.workingCapitalFreed);
+
+        // Update current state
+        document.getElementById('current-dso').textContent = business.currentDSO + ' days';
+        document.getElementById('current-receivables').textContent = formatCurrency(business.receivables);
+        document.getElementById('current-ftes').textContent = business.vendorInquiryFTEs;
+
+        // Update targets
+        document.getElementById('target-dso').textContent = business.targetDSOReduction + ' days';
+        document.getElementById('target-capital').textContent = formatCurrency(business.workingCapitalFreed);
+        document.getElementById('target-deflection').textContent = Math.round(business.deflectionRateTarget * 100) + '%';
+
+        // Update footer
+        document.getElementById('last-updated').textContent = data.meta.lastUpdated;
+
+        // Initialize chart
+        initChart(summary, value);
+      } catch (error) {
+        console.error('Error loading ROM data:', error);
+      }
+    }
+
+    function initChart(summary, value) {
+      const ctx = document.getElementById('overviewChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Pilot Investment', 'Year 1 Value', 'Year 2 Value', 'Year 3 Value'],
+          datasets: [{
+            label: 'Investment',
+            data: [summary.investmentAvg / 1000, 0, 0, 0],
+            backgroundColor: '#ef4444',
+          }, {
+            label: 'Projected Value',
+            data: [0, value.totalYear1Value / 1000, value.totalYear2Value / 1000, 1050],
+            backgroundColor: '#22c55e',
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': $' + context.raw + 'K';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) { return '$' + value + 'K'; }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Load data on page load
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

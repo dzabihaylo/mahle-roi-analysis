@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Summary | MAHLE AI Finance Transformation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .summary-section {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+    .summary-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .summary-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .deployment-option {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: all 0.2s;
+    }
+    .deployment-option:hover {
+      border-color: var(--primary);
+    }
+    .deployment-option h4 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .deployment-list {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .deployment-list li {
+      padding: 6px 0;
+      display: flex;
+      gap: 8px;
+    }
+    .deployment-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: bold;
+    }
+    .next-steps-table {
+      width: 100%;
+    }
+    .next-steps-table td {
+      padding: 16px 12px;
+      vertical-align: top;
+    }
+    .next-steps-table tr:nth-child(odd) {
+      background: #f8fafc;
+    }
+    .step-date {
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      width: 140px;
+    }
+    .step-action {
+      font-weight: 500;
+    }
+    .step-owner {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .print-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+    }
+    @media print {
+      .nav, .print-btn { display: none; }
+      .container { padding: 0; max-width: 100%; }
+      .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-brand-icon">M</div>
+        <div>
+          <div class="nav-brand-text">MAHLE × Provectus</div>
+          <div class="nav-brand-sub">AI Finance Transformation</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="roi-analysis.html" class="nav-link">ROI Analysis</a>
+        <a href="talking-points.html" class="nav-link">Meeting Guide</a>
+        <a href="deal-summary.html" class="nav-link active">Deal Summary</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Deal Summary</h1>
+      <p>One-page overview for Andreas Steiner, CFO North America | February 2026</p>
+    </div>
+
+    <div class="card">
+      <!-- The Opportunity -->
+      <div class="summary-section">
+        <div class="summary-title">The Opportunity</div>
+        <div class="grid-3">
+          <div>
+            <div class="metric-label">Current State</div>
+            <table style="font-size: 14px;">
+              <tr>
+                <td>DSO</td>
+                <td class="text-right font-bold text-danger" id="ds-dso">60 days</td>
+              </tr>
+              <tr>
+                <td>Receivables</td>
+                <td class="text-right font-bold" id="ds-receivables">$70M</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <div class="metric-label">Challenge</div>
+            <p style="font-size: 14px; color: var(--text-secondary);">Invoice delays (3-7 days) and slow vendor responses (5-10 days) trap working capital and increase costs</p>
+          </div>
+          <div>
+            <div class="metric-label">Impact</div>
+            <p style="font-size: 14px; color: var(--text-secondary);">15 FTEs on repetitive inquiries, cash flow constraints, poor vendor experience</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proposed Solution -->
+      <div class="summary-section">
+        <div class="summary-title">Proposed Solution: 12-Week Parallel Pilot</div>
+        <div class="grid-2">
+          <div class="info-box info-green">
+            <div class="title">Use Case 1: AI Vendor Communication Bot</div>
+            <p><strong>Quick Win</strong> – AI chatbot handles routine vendor queries in real-time</p>
+            <p class="mt-16" style="font-size: 13px;"><strong>Targets:</strong> 60-70% deflection, < 5 min response, 20-30% AP time savings</p>
+          </div>
+          <div class="info-box info-blue">
+            <div class="title">Use Case 2: Order-to-Cash AI Automation</div>
+            <p><strong>Strategic Win</strong> – AI identifies ECNs, calculates pricing, generates invoice drafts</p>
+            <p class="mt-16" style="font-size: 13px;"><strong>Targets:</strong> 30-40% cycle time reduction, 80%+ AI accuracy</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investment & Timeline -->
+      <div class="summary-section">
+        <div class="summary-title">Investment & Timeline</div>
+        <div class="grid-4">
+          <div>
+            <div class="metric-label">Investment</div>
+            <div class="metric-value" id="ds-investment" style="font-size: 24px;">$300K</div>
+            <div class="metric-sub" id="ds-investment-range">Range: $260K-$370K</div>
+          </div>
+          <div>
+            <div class="metric-label">Duration</div>
+            <div class="metric-value" id="ds-weeks" style="font-size: 24px;">12 weeks</div>
+            <div class="metric-sub">Range: 10-14 weeks</div>
+          </div>
+          <div>
+            <div class="metric-label">Monthly Rate</div>
+            <div class="metric-value" style="font-size: 24px;">~$100K</div>
+            <div class="metric-sub">3-month engagement</div>
+          </div>
+          <div>
+            <div class="metric-label">Team Size</div>
+            <div class="metric-value" style="font-size: 24px;">6 FTEs</div>
+            <div class="metric-sub">SO, SA, DE, ML, Apps, QA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expected Value -->
+      <div class="summary-section">
+        <div class="summary-title">Expected Value</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Value Driver</th>
+              <th class="text-right">Annual Estimate</th>
+              <th>Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working capital improvement</td>
+              <td class="text-right font-bold" id="ds-wc-value">$400K</td>
+              <td class="text-muted">10-day DSO reduction on $70M @ 3.5% cost of capital</td>
+            </tr>
+            <tr>
+              <td>AP productivity gains</td>
+              <td class="text-right font-bold" id="ds-ap-value">$180K</td>
+              <td class="text-muted">20-30% time savings across 15-person inquiry team</td>
+            </tr>
+            <tr>
+              <td>Process acceleration</td>
+              <td class="text-right font-bold" id="ds-process-value">$70K</td>
+              <td class="text-muted">Reduced rework, faster dispute resolution</td>
+            </tr>
+            <tr class="highlight-row">
+              <td class="font-bold">Total Year 1 Value</td>
+              <td class="text-right font-bold text-success" id="ds-total-value">$650K+</td>
+              <td class="text-muted">Conservative estimate</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex gap-24 mt-16 flex-wrap">
+          <div><strong>Payback Period:</strong> <span class="text-success" id="ds-payback">4-6 months</span> post-pilot</div>
+          <div><strong>3-Year ROI:</strong> <span class="text-success" id="ds-roi">550%+</span></div>
+        </div>
+      </div>
+
+      <!-- Deployment Options -->
+      <div class="summary-section">
+        <div class="summary-title">Deployment Options</div>
+        <div class="grid-2">
+          <div class="deployment-option">
+            <h4>🌐 Provectus Hosted</h4>
+            <ul class="deployment-list">
+              <li>Faster launch (weeks not months)</li>
+              <li>SaaS subscription model</li>
+              <li>We handle infrastructure & updates</li>
+              <li>APIs connect to your SAP securely</li>
+            </ul>
+          </div>
+          <div class="deployment-option">
+            <h4>🏢 In-House</h4>
+            <ul class="deployment-list">
+              <li>Full IT governance</li>
+              <li>Complete data residency</li>
+              <li>Your IT manages long-term</li>
+              <li>Longer setup (+2-3 weeks)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="summary-section">
+        <div class="summary-title">Next Steps</div>
+        <table class="next-steps-table">
+          <tr>
+            <td class="step-date">This Week</td>
+            <td>
+              <div class="step-action">Confirm scope & budget alignment</div>
+              <div class="step-owner">MAHLE & Provectus</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-date">End of February</td>
+            <td>
+              <div class="step-action">Complete MSA terms & conditions</div>
+              <div class="step-owner">MAHLE & Provectus</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-date">Early March</td>
+            <td>
+              <div class="step-action">SOW delivered for review</div>
+              <div class="step-owner">Provectus</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-date">Mid-March</td>
+            <td>
+              <div class="step-action">Finalize MSA and SOW</div>
+              <div class="step-owner">MAHLE</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-date">April 6</td>
+            <td>
+              <div class="step-action">Project kick-off</div>
+              <div class="step-owner">Joint</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-date">Late June</td>
+            <td>
+              <div class="step-action">Pilot live</div>
+              <div class="step-owner">Provectus</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Why Now -->
+      <div>
+        <div class="summary-title">Why Now?</div>
+        <div class="grid-4">
+          <div class="info-box info-blue" style="margin: 0;">
+            <div class="title">Low Risk</div>
+            <p>12-week pilot with clear go/no-go metrics</p>
+          </div>
+          <div class="info-box info-green" style="margin: 0;">
+            <div class="title">High Impact</div>
+            <p>CFO priority (working capital) + quick win</p>
+          </div>
+          <div class="info-box info-purple" style="margin: 0;">
+            <div class="title">Proven Approach</div>
+            <p>Azure AI + SAP + Power Apps = minimal tech risk</p>
+          </div>
+          <div class="info-box info-orange" style="margin: 0;">
+            <div class="title">Clear ROI</div>
+            <p>Payback in 4-6 months, $650K+/year ongoing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="callout callout-blue mt-24">
+      <h4>Questions?</h4>
+      <p><strong>Dave Zabihaylo</strong> | dzabihaylo@provectus.com</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>MAHLE AI Finance Transformation | Provectus | February 2026</p>
+      <p class="mt-16" style="font-size: 12px;">Data sourced from ROM v1.0 • Last updated: <span id="last-updated">2026-02-03</span></p>
+    </div>
+  </div>
+
+  <!-- Print Button -->
+  <button class="btn btn-primary print-btn" onclick="window.print()">
+    🖨️ Print / Save PDF
+  </button>
+
+  <script>
+    // Load ROM data
+    async function loadData() {
+      try {
+        const response = await fetch('data/rom-data.json');
+        const data = await response.json();
+        const business = data.businessCase;
+        const summary = data.summary;
+        const value = data.valueProjections;
+
+        const formatCurrency = (num) => {
+          if (num >= 1000000) return '$' + (num / 1000000).toFixed(0) + 'M';
+          if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+          return '$' + num;
+        };
+
+        // Current state
+        document.getElementById('ds-dso').textContent = business.currentDSO + ' days';
+        document.getElementById('ds-receivables').textContent = formatCurrency(business.receivables);
+
+        // Investment
+        document.getElementById('ds-investment').textContent = formatCurrency(summary.investmentAvg);
+        document.getElementById('ds-investment-range').textContent =
+          'Range: ' + formatCurrency(summary.investmentLow) + '-' + formatCurrency(summary.investmentHigh);
+        document.getElementById('ds-weeks').textContent = summary.weeksAvg + ' weeks';
+
+        // Value
+        document.getElementById('ds-wc-value').textContent = formatCurrency(value.workingCapitalValue);
+        document.getElementById('ds-ap-value').textContent = formatCurrency(value.apProductivityValue);
+        document.getElementById('ds-process-value').textContent = formatCurrency(value.processAccelerationValue);
+        document.getElementById('ds-total-value').textContent = formatCurrency(value.totalYear1Value) + '+';
+        document.getElementById('ds-payback').textContent = value.paybackMonths + ' months';
+        document.getElementById('ds-roi').textContent = (value.threeYearROI * 100) + '%+';
+
+        // Footer
+        document.getElementById('last-updated').textContent = data.meta.lastUpdated;
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

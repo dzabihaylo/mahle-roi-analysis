@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Analysis | MAHLE AI Finance Transformation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-container { position: relative; height: 280px; }
+    .tab-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+      color: var(--text-secondary);
+    }
+    .tab-btn:hover { background: #f1f5f9; }
+    .tab-btn.active { background: var(--primary); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease-out; }
+    .response-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .response-label { width: 60px; font-size: 14px; color: var(--text-secondary); }
+    .response-bars { flex: 1; display: flex; align-items: center; gap: 8px; }
+    .response-bar {
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .bar-red { background: #fecaca; color: #991b1b; }
+    .bar-green { background: #bbf7d0; color: #166534; }
+    .arrow { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-brand-icon">M</div>
+        <div>
+          <div class="nav-brand-text">MAHLE × Provectus</div>
+          <div class="nav-brand-sub">AI Finance Transformation</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="roi-analysis.html" class="nav-link active">ROI Analysis</a>
+        <a href="talking-points.html" class="nav-link">Meeting Guide</a>
+        <a href="deal-summary.html" class="nav-link">Deal Summary</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>ROI Analysis</h1>
+      <p>Detailed financial projections and business case validation</p>
+      <div class="flex gap-8 mt-16 flex-wrap">
+        <span class="badge badge-blue">12-Week Pilot</span>
+        <span class="badge badge-green" id="badge-investment">$300K Investment</span>
+        <span class="badge badge-purple">2 Use Cases</span>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('summary')">Executive Summary</button>
+      <button class="tab-btn" onclick="showTab('working-capital')">Working Capital</button>
+      <button class="tab-btn" onclick="showTab('efficiency')">FTE Efficiency</button>
+      <button class="tab-btn" onclick="showTab('timeline')">Payback Timeline</button>
+    </div>
+
+    <!-- Executive Summary Tab -->
+    <div id="summary" class="tab-content active">
+      <div class="grid-4 mb-24">
+        <div class="metric-card">
+          <div class="metric-label">Pilot Investment</div>
+          <div class="metric-value" id="metric-investment">$300K</div>
+          <div class="metric-sub" id="metric-investment-range">Range: $260K-$370K</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Year 1 Projected Value</div>
+          <div class="metric-value text-success" id="metric-year1">$650K+</div>
+          <div class="metric-sub">Conservative estimate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Payback Period</div>
+          <div class="metric-value text-primary" id="metric-payback">4-6 mo</div>
+          <div class="metric-sub">Post-pilot completion</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">3-Year ROI</div>
+          <div class="metric-value text-purple" id="metric-roi">550%+</div>
+          <div class="metric-sub">Cumulative value vs cost</div>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <h3>Investment vs. Projected Value ($K)</h3>
+          <div class="chart-container">
+            <canvas id="investmentChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Value Breakdown by Category ($K/year)</h3>
+          <div class="chart-container">
+            <canvas id="valueChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Value Calculation Assumptions</h3>
+        <div class="grid-3 mt-16">
+          <div>
+            <div class="font-bold text-primary mb-8">Working Capital ($400K/yr)</div>
+            <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+              <li>• $70M in receivables at 60-day DSO</li>
+              <li>• 10-day DSO reduction target</li>
+              <li>• ~$11.7M freed working capital</li>
+              <li>• Cost of capital: 3-4%</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-success mb-8">AP Productivity ($180K/yr)</div>
+            <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+              <li>• 15 FTEs on vendor inquiries</li>
+              <li>• 60-70% query deflection to AI</li>
+              <li>• 20-30% team time savings</li>
+              <li>• Capacity redeployed to exceptions</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-purple mb-8">Process Acceleration ($70K/yr)</div>
+            <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+              <li>• Invoice cycle: 7 days → 2 days</li>
+              <li>• Reduced rework from 80%+ AI accuracy</li>
+              <li>• Faster dispute resolution</li>
+              <li>• Improved vendor satisfaction</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Working Capital Tab -->
+    <div id="working-capital" class="tab-content">
+      <div class="card mb-24">
+        <h3>DSO Reduction Impact on Receivables</h3>
+        <p class="text-muted mb-16">Current receivables: <span id="wc-receivables">$70M</span> at <span id="wc-dso">60</span>-day DSO</p>
+        <div class="chart-container">
+          <canvas id="dsoChart"></canvas>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Working Capital Calculation</h3>
+          <table>
+            <tr>
+              <td>Current Receivables</td>
+              <td class="text-right font-bold" id="wc-receivables-full">$70,000,000</td>
+            </tr>
+            <tr>
+              <td>Current DSO</td>
+              <td class="text-right font-bold" id="wc-dso-full">60 days</td>
+            </tr>
+            <tr>
+              <td>Daily Sales Rate</td>
+              <td class="text-right font-bold" id="wc-daily-rate">$1,166,667</td>
+            </tr>
+            <tr>
+              <td>Target DSO Reduction</td>
+              <td class="text-right font-bold text-success" id="wc-target-reduction">10 days</td>
+            </tr>
+            <tr class="highlight-row">
+              <td class="font-bold">Working Capital Freed</td>
+              <td class="text-right font-bold text-success" id="wc-capital-freed">$11,666,670</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Why DSO Matters to the CFO</h3>
+          <div class="info-box info-blue">
+            <div class="title">Cash Flow Impact</div>
+            <p>$11.7M freed capital can fund operations, reduce borrowing, or fund strategic initiatives</p>
+          </div>
+          <div class="info-box info-green">
+            <div class="title">Cost of Capital Savings</div>
+            <p>At 3.5% cost of capital, $11.7M freed = ~$410K annual savings</p>
+          </div>
+          <div class="info-box info-purple">
+            <div class="title">Benchmarking</div>
+            <p>Auto supplier industry average: 45-50 days. MAHLE at 60 days has room to improve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FTE Efficiency Tab -->
+    <div id="efficiency" class="tab-content">
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <h3>Vendor Inquiry Handling</h3>
+          <div class="mb-16">
+            <div class="flex justify-between mb-8" style="font-size: 14px;">
+              <span>Current: <span id="eff-ftes">15</span> FTEs</span>
+              <span class="text-danger">100% manual</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-red" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="mb-16">
+            <div class="flex justify-between mb-8" style="font-size: 14px;">
+              <span>Post-AI: 5-6 FTEs on exceptions</span>
+              <span class="text-success">60-70% automated</span>
+            </div>
+            <div class="progress-bar" style="display: flex;">
+              <div class="progress-fill progress-green" style="width: 65%;"></div>
+              <div class="progress-fill progress-blue" style="width: 35%;"></div>
+            </div>
+            <div class="flex justify-between mt-8" style="font-size: 12px; color: var(--text-muted);">
+              <span>AI Handled</span>
+              <span>Human Exceptions</span>
+            </div>
+          </div>
+          <div class="info-box info-green">
+            <p><span class="font-bold">20-30% time savings</span> across the AP inquiry team</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Response Time Improvement</h3>
+          <div class="response-row">
+            <div class="response-label">Portal</div>
+            <div class="response-bars">
+              <div class="response-bar bar-red" style="width: 55%;">2-3 days</div>
+              <span class="arrow">→</span>
+              <div class="response-bar bar-green" style="width: 25%;">&lt;5 min</div>
+            </div>
+          </div>
+          <div class="response-row">
+            <div class="response-label">Email</div>
+            <div class="response-bars">
+              <div class="response-bar bar-red" style="width: 80%;">5-10 days</div>
+              <span class="arrow">→</span>
+              <div class="response-bar bar-green" style="width: 25%;">&lt;5 min</div>
+            </div>
+          </div>
+          <div class="info-box info-blue mt-24">
+            <p><span class="font-bold">99% reduction</span> in response time for routine queries</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Efficiency Value Calculation</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="text-right">Current</th>
+              <th class="text-right">Post-AI</th>
+              <th class="text-right">Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Query deflection rate</td>
+              <td class="text-right">0%</td>
+              <td class="text-right">60-70%</td>
+              <td class="text-right text-success font-bold">AI handles routine</td>
+            </tr>
+            <tr>
+              <td>Avg response time</td>
+              <td class="text-right">2-10 days</td>
+              <td class="text-right">&lt;5 min</td>
+              <td class="text-right text-success font-bold">99% faster</td>
+            </tr>
+            <tr>
+              <td>Invoice cycle time</td>
+              <td class="text-right">3-7 days</td>
+              <td class="text-right">1-2 days</td>
+              <td class="text-right text-success font-bold">30-40% reduction</td>
+            </tr>
+            <tr>
+              <td>Invoice accuracy</td>
+              <td class="text-right">Manual</td>
+              <td class="text-right">80%+ AI</td>
+              <td class="text-right text-success font-bold">Reduced rework</td>
+            </tr>
+            <tr class="highlight-row">
+              <td class="font-bold">Annual Productivity Value</td>
+              <td class="text-right">-</td>
+              <td class="text-right">-</td>
+              <td class="text-right text-success font-bold" id="eff-value">$180K+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Payback Timeline Tab -->
+    <div id="timeline" class="tab-content">
+      <div class="card mb-24">
+        <h3>Cumulative Value vs. Investment ($K)</h3>
+        <p class="text-muted mb-16">Break-even projected at month 7 (4 months post-pilot)</p>
+        <div class="chart-container">
+          <canvas id="paybackChart"></canvas>
+        </div>
+        <div class="flex justify-center gap-24 mt-16 flex-wrap" style="justify-content: center;">
+          <div class="flex items-center gap-8">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
+            <span style="font-size: 14px;">Investment Phase (M1-M3)</span>
+          </div>
+          <div class="flex items-center gap-8">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #eab308;"></div>
+            <span style="font-size: 14px;">Value Ramp (M4-M6)</span>
+          </div>
+          <div class="flex items-center gap-8">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></div>
+            <span style="font-size: 14px;">Positive ROI (M7+)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3 mb-24">
+        <div class="card" style="border-left: 4px solid #ef4444;">
+          <h3>Pilot Phase</h3>
+          <p class="text-muted mb-16" style="font-size: 14px;">Months 1-3</p>
+          <div class="timeline-item"><span>Discovery & Setup</span><span>Weeks 1-2</span></div>
+          <div class="timeline-item"><span>AI Development</span><span>Weeks 3-5</span></div>
+          <div class="timeline-item"><span>UI & Testing</span><span>Weeks 6-8</span></div>
+          <div class="timeline-item"><span>Live Pilot</span><span>Weeks 9-12</span></div>
+          <div style="border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px;">
+            <span class="font-bold text-danger">Investment: -$300K</span>
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #eab308;">
+          <h3>Value Ramp</h3>
+          <p class="text-muted mb-16" style="font-size: 14px;">Months 4-6</p>
+          <div class="timeline-item"><span>Full deployment</span><span>Month 4</span></div>
+          <div class="timeline-item"><span>Process stabilization</span><span>Month 5</span></div>
+          <div class="timeline-item"><span>Value acceleration</span><span>Month 6</span></div>
+          <div style="border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px;">
+            <span class="font-bold text-warning">Value: +$250K</span>
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #22c55e;">
+          <h3>Steady State</h3>
+          <p class="text-muted mb-16" style="font-size: 14px;">Months 7-12</p>
+          <div class="timeline-item"><span>Break-even</span><span>Month 7</span></div>
+          <div class="timeline-item"><span>Full value realization</span><span>Month 8+</span></div>
+          <div class="timeline-item"><span>Phase 2 decision</span><span>Month 9</span></div>
+          <div style="border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px;">
+            <span class="font-bold text-success">Value: +$400K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue">
+        <h4>Key Takeaway for Andreas</h4>
+        <p>The $300K pilot investment pays for itself within 4 months of going live. By month 12, you're looking at a net positive of $350K+ with ongoing annual value of $650K. This is a low-risk way to validate AI capabilities while generating real business impact.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>MAHLE AI Finance Transformation | Provectus | February 2026</p>
+      <p class="mt-16" style="font-size: 12px;">Data sourced from ROM v1.0 • Last updated: <span id="last-updated">2026-02-03</span></p>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching with hash support
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+
+      // Initialize charts when tab is shown
+      setTimeout(() => {
+        if (tabId === 'summary') initSummaryCharts();
+        if (tabId === 'working-capital') initDSOChart();
+        if (tabId === 'timeline') initPaybackChart();
+      }, 50);
+
+      // Update URL hash
+      history.replaceState(null, null, '#' + tabId);
+    }
+
+    // Chart instances
+    let investmentChart, valueChart, dsoChart, paybackChart;
+
+    function initSummaryCharts() {
+      if (investmentChart) investmentChart.destroy();
+      if (valueChart) valueChart.destroy();
+
+      const ctx1 = document.getElementById('investmentChart').getContext('2d');
+      investmentChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['Pilot Investment', 'Year 1 Value', 'Year 2 Value'],
+          datasets: [{
+            label: 'Investment',
+            data: [300, 0, 0],
+            backgroundColor: '#ef4444',
+          }, {
+            label: 'Value',
+            data: [0, 650, 850],
+            backgroundColor: '#22c55e',
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: (value) => '$' + value + 'K' }
+            }
+          }
+        }
+      });
+
+      const ctx2 = document.getElementById('valueChart').getContext('2d');
+      valueChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['Working Capital', 'AP Productivity', 'Process Acceleration'],
+          datasets: [{ data: [400, 180, 70], backgroundColor: ['#2563eb', '#16a34a', '#9333ea'] }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: { callback: (value) => '$' + value + 'K' }
+            }
+          }
+        }
+      });
+    }
+
+    function initDSOChart() {
+      if (dsoChart) dsoChart.destroy();
+
+      const ctx = document.getElementById('dsoChart').getContext('2d');
+      dsoChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Current State', 'Conservative (-5 days)', 'Target (-10 days)', 'Stretch (-15 days)'],
+          datasets: [{
+            label: 'DSO (days)',
+            data: [60, 55, 50, 45],
+            backgroundColor: '#3b82f6',
+            yAxisID: 'y',
+          }, {
+            label: 'Trapped Capital ($M)',
+            data: [70, 64.2, 58.3, 52.5],
+            type: 'line',
+            borderColor: '#ef4444',
+            backgroundColor: '#ef4444',
+            borderWidth: 3,
+            pointRadius: 5,
+            yAxisID: 'y1',
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            y: { type: 'linear', position: 'left', title: { display: true, text: 'DSO (days)' }, min: 40, max: 65 },
+            y1: { type: 'linear', position: 'right', title: { display: true, text: 'Trapped Capital ($M)' }, min: 50, max: 75, grid: { drawOnChartArea: false } }
+          }
+        }
+      });
+    }
+
+    function initPaybackChart() {
+      if (paybackChart) paybackChart.destroy();
+
+      const ctx = document.getElementById('paybackChart').getContext('2d');
+      paybackChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M12'],
+          datasets: [{
+            label: 'Cumulative ($K)',
+            data: [-100, -200, -300, -250, -150, -50, 50, 150, 250, 400],
+            borderColor: '#22c55e',
+            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.3,
+            pointRadius: 6,
+            pointBackgroundColor: (context) => {
+              const value = context.raw;
+              if (value < -200) return '#ef4444';
+              if (value < 0) return '#eab308';
+              return '#22c55e';
+            }
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { ticks: { callback: (value) => '$' + value + 'K' } }
+          }
+        }
+      });
+    }
+
+    // Load ROM data
+    async function loadData() {
+      try {
+        const response = await fetch('data/rom-data.json');
+        const data = await response.json();
+        const business = data.businessCase;
+        const summary = data.summary;
+        const value = data.valueProjections;
+
+        const formatCurrency = (num) => {
+          if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+          if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+          return '$' + num;
+        };
+
+        // Update metrics
+        document.getElementById('metric-investment').textContent = formatCurrency(summary.investmentAvg);
+        document.getElementById('metric-investment-range').textContent = `Range: ${formatCurrency(summary.investmentLow)}-${formatCurrency(summary.investmentHigh)}`;
+        document.getElementById('badge-investment').textContent = formatCurrency(summary.investmentAvg) + ' Investment';
+        document.getElementById('metric-year1').textContent = formatCurrency(value.totalYear1Value) + '+';
+        document.getElementById('metric-payback').textContent = value.paybackMonths + ' mo';
+        document.getElementById('metric-roi').textContent = (value.threeYearROI * 100) + '%+';
+
+        // Working capital tab
+        document.getElementById('wc-receivables').textContent = formatCurrency(business.receivables);
+        document.getElementById('wc-dso').textContent = business.currentDSO;
+        document.getElementById('wc-receivables-full').textContent = '$' + business.receivables.toLocaleString();
+        document.getElementById('wc-dso-full').textContent = business.currentDSO + ' days';
+        document.getElementById('wc-daily-rate').textContent = '$' + business.dailySalesRate.toLocaleString();
+        document.getElementById('wc-target-reduction').textContent = business.targetDSOReduction + ' days';
+        document.getElementById('wc-capital-freed').textContent = '$' + business.workingCapitalFreed.toLocaleString();
+
+        // Efficiency tab
+        document.getElementById('eff-ftes').textContent = business.vendorInquiryFTEs;
+        document.getElementById('eff-value').textContent = formatCurrency(value.apProductivityValue) + '+';
+
+        // Footer
+        document.getElementById('last-updated').textContent = data.meta.lastUpdated;
+
+        // Initialize first chart
+        initSummaryCharts();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        initSummaryCharts(); // Use defaults
+      }
+    }
+
+    // Handle hash navigation
+    function handleHash() {
+      const hash = window.location.hash.substring(1);
+      if (hash && ['summary', 'working-capital', 'efficiency', 'timeline'].includes(hash)) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(hash).classList.add('active');
+        document.querySelector(`[onclick="showTab('${hash}')"]`).classList.add('active');
+
+        setTimeout(() => {
+          if (hash === 'summary') initSummaryCharts();
+          if (hash === 'working-capital') initDSOChart();
+          if (hash === 'timeline') initPaybackChart();
+        }, 100);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      handleHash();
+    });
+    window.addEventListener('hashchange', handleHash);
+  </script>
+</body>
+</html>

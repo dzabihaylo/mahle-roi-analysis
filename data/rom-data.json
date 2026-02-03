@@ -18,7 +18,6 @@
     "targetVelocity": 60,
     "blendedRate": 108.38
   },
-  "team": [],
   "phases": {
     "discoverySetup": {
       "pointsLow": 29,
@@ -166,50 +165,6 @@
           "value": "Faster unlock"
         }
       ]
-    }
-  ],
-  "staffing": [
-    {
-      "role": "Solution Owner",
-      "region": "LATAM",
-      "fte": 1.0,
-      "costRate": 48
-    },
-    {
-      "role": "Solution Architect",
-      "region": "LATAM",
-      "fte": 1.0,
-      "costRate": 55
-    },
-    {
-      "role": "Data Engineer",
-      "region": "LATAM",
-      "fte": 1.0,
-      "costRate": 31
-    },
-    {
-      "role": "ML/AI Engineer",
-      "region": "LATAM",
-      "fte": 1.0,
-      "costRate": 33
-    },
-    {
-      "role": "Power Apps Developer",
-      "region": "Europe",
-      "fte": 1.0,
-      "costRate": 36
-    },
-    {
-      "role": "Backend Developer",
-      "region": "LATAM",
-      "fte": 0.5,
-      "costRate": 33
-    },
-    {
-      "role": "QA Engineer",
-      "region": "Europe",
-      "fte": 0.5,
-      "costRate": 26
     }
   ]
 }

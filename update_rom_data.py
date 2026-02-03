@@ -62,14 +62,12 @@ def extract_rom_data(excel_path):
             "sourceFile": os.path.basename(excel_path)
         },
         "summary": {},
-        "team": [],
         "phases": {},
         "totals": {},
         "businessCase": {},
         "valueProjections": {},
         "timeline": {},
-        "useCases": [],
-        "staffing": []
+        "useCases": []
     }
 
     # Extract from "Drivers & Estimates" sheet
@@ -111,24 +109,6 @@ def extract_rom_data(excel_path):
                 }
         if phases:
             rom_data["phases"] = phases
-
-    # Extract from "Fees & costs" sheet
-    if "Fees & costs" in wb.sheetnames:
-        sheet = wb["Fees & costs"]
-        staffing = []
-
-        for row in sheet.iter_rows(min_row=10, max_row=25, values_only=True):
-            if row[0] and row[1] and "total" not in str(row[0]).lower():
-                role = str(row[0]).strip()
-                if role and role not in ["", "Add rows as necessary"]:
-                    staffing.append({
-                        "role": role,
-                        "fte": float(row[1]) if row[1] else 0,
-                        "costRate": float(row[2]) if row[2] else 0
-                    })
-
-        if staffing:
-            rom_data["staffing"] = staffing
 
     # Business case data (these would need to be updated manually or from another source)
     rom_data["businessCase"] = {

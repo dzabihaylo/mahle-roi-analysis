@@ -3,88 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meeting Guide | MAHLE AI Finance Transformation</title>
+  <title>Solution Overview | MAHLE AI Finance Transformation</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .talk-track {
-      background: #f8fafc;
-      border-left: 4px solid var(--primary);
-      padding: 16px 20px;
-      margin: 16px 0;
-      font-style: italic;
-      border-radius: 0 8px 8px 0;
-    }
-    .objection-card {
-      border: 1px solid var(--border);
+    .solution-card {
+      border: 2px solid var(--border);
       border-radius: var(--radius);
-      margin-bottom: 16px;
-      overflow: hidden;
+      padding: 24px;
+      transition: all 0.2s;
     }
-    .objection-header {
-      background: #fef2f2;
-      padding: 16px 20px;
+    .solution-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+    .solution-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
       font-weight: 600;
-      color: #991b1b;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .objection-header:hover { background: #fee2e2; }
-    .objection-body {
-      padding: 20px;
-      background: white;
-      display: none;
+    .badge-quick { background: #dcfce7; color: #166534; }
+    .badge-strategic { background: #dbeafe; color: #1e40af; }
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
     }
-    .objection-body.show { display: block; }
-    .meeting-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .target-item {
+      text-align: center;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
     }
-    .flow-item {
+    .target-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--success);
+    }
+    .target-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .process-step {
       display: flex;
       gap: 20px;
-      padding: 16px 0;
+      padding: 20px 0;
       border-bottom: 1px solid var(--border);
     }
-    .flow-item:last-child { border-bottom: none; }
-    .flow-time {
-      min-width: 80px;
-      font-weight: 600;
-      color: var(--primary);
-    }
-    .flow-topic { font-weight: 500; min-width: 200px; }
-    .flow-owner { color: var(--text-muted); }
-    .question-list {
-      list-style: none;
-    }
-    .question-list li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      gap: 12px;
-    }
-    .question-list li:last-child { border-bottom: none; }
-    .question-num {
+    .process-step:last-child { border-bottom: none; }
+    .step-number {
+      width: 40px;
+      height: 40px;
       background: var(--primary);
       color: white;
-      width: 24px;
-      height: 24px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       flex-shrink: 0;
     }
-    .tab-nav {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+    .step-content h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
     }
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .tech-stack {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .tech-item {
+      background: #f1f5f9;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+    }
+    .faq-question:hover { background: #f8fafc; }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+      background: #f8fafc;
+    }
+    .faq-answer.show {
+      padding: 20px;
+      max-height: 500px;
+    }
+    .tab-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
     .tab-btn {
       padding: 10px 20px;
       border-radius: var(--radius-sm);
@@ -98,7 +130,10 @@
     .tab-btn:hover { background: #f1f5f9; }
     .tab-btn.active { background: var(--primary); color: white; }
     .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease-out; }
+    @media (max-width: 768px) {
+      .target-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -115,7 +150,7 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link">Overview</a>
         <a href="roi-analysis.html" class="nav-link">ROI Analysis</a>
-        <a href="talking-points.html" class="nav-link active">Meeting Guide</a>
+        <a href="talking-points.html" class="nav-link active">Solution Details</a>
         <a href="deal-summary.html" class="nav-link">Deal Summary</a>
       </div>
     </div>
@@ -123,363 +158,326 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>Meeting Guide</h1>
-      <p>Talking points, objection handlers, and closing strategy for your meeting with Andreas Steiner (CFO) and Mario Curcic</p>
+      <h1>Solution Details</h1>
+      <p>How we'll unlock working capital and improve vendor satisfaction through AI-powered automation</p>
     </div>
 
     <!-- Tab Navigation -->
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="showTab('opening')">Opening</button>
-      <button class="tab-btn" onclick="showTab('validation')">Business Case</button>
-      <button class="tab-btn" onclick="showTab('objections')">Objection Handlers</button>
-      <button class="tab-btn" onclick="showTab('closing')">Closing Strategy</button>
-      <button class="tab-btn" onclick="showTab('flow')">Meeting Flow</button>
+      <button class="tab-btn active" onclick="showTab('challenges')">Current Challenges</button>
+      <button class="tab-btn" onclick="showTab('solutions')">Proposed Solutions</button>
+      <button class="tab-btn" onclick="showTab('approach')">Our Approach</button>
+      <button class="tab-btn" onclick="showTab('faq')">FAQ</button>
     </div>
 
-    <!-- Opening Tab -->
-    <div id="opening" class="tab-content active">
+    <!-- Current Challenges Tab -->
+    <div id="challenges" class="tab-content active">
       <div class="card mb-24">
-        <h3>Opening Frame (2 minutes)</h3>
-        <p class="text-muted mb-16">Set the tone: you've done the homework together, today is about alignment and next steps.</p>
-        <div class="talk-track">
-          "Andreas, Mario – thank you for the time you've invested in this process. Based on our discovery sessions and the data your team provided, we've refined our approach to focus on the two use cases with the clearest path to ROI. Today I'd like to walk through our validation of the business case, confirm we're aligned on scope and investment, and discuss next steps to get started."
+        <h3>What We Heard</h3>
+        <p class="text-muted mb-24">Through our discovery sessions, we identified three critical areas impacting finance operations:</p>
+
+        <div class="grid-3">
+          <div class="info-box info-orange" style="margin: 0;">
+            <div class="title">Vendor Inquiry Inefficiencies</div>
+            <p>15 FTEs manage largely repetitive inquiries with 5-10 day response times via email, impacting vendor experience and delaying operations.</p>
+          </div>
+          <div class="info-box info-blue" style="margin: 0;">
+            <div class="title">Invoicing Delays Impact Cash Flow</div>
+            <p>Decentralized invoice generation and engineering-driven pricing changes delay billing 3-7 days, trapping ~$70M in receivables.</p>
+          </div>
+          <div class="info-box info-purple" style="margin: 0;">
+            <div class="title">Extended Payment Cycles</div>
+            <p>Inefficiencies in invoice approval slow the procure-to-pay cycle to 58-day DPO, reducing early-payment discount capture.</p>
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <h3>Key Message</h3>
-        <div class="callout callout-blue">
-          <h4>The Core Pitch</h4>
-          <p>"We've done the homework together. Today is about confirming we're aligned on the value, the approach, and the path forward."</p>
-        </div>
-        <div class="grid-3 mt-24">
-          <div class="info-box info-blue">
-            <div class="title">For Andreas (CFO)</div>
-            <p>Focus on working capital impact, payback period, and risk mitigation through pilot structure</p>
+        <h3>Current State Metrics</h3>
+        <div class="grid-2">
+          <div>
+            <table>
+              <tr>
+                <td>Days Sales Outstanding (DSO)</td>
+                <td class="text-right font-bold text-danger" id="ch-dso">60 days</td>
+              </tr>
+              <tr>
+                <td>Industry Benchmark</td>
+                <td class="text-right font-bold">45-50 days</td>
+              </tr>
+              <tr>
+                <td>Outstanding Receivables</td>
+                <td class="text-right font-bold" id="ch-receivables">$70M</td>
+              </tr>
+              <tr>
+                <td>Invoice Cycle Time</td>
+                <td class="text-right font-bold text-danger">3-7 days</td>
+              </tr>
+            </table>
           </div>
-          <div class="info-box info-green">
-            <div class="title">For Mario (COE Lead)</div>
-            <p>Emphasize operational efficiency, team productivity gains, and vendor satisfaction improvement</p>
-          </div>
-          <div class="info-box info-purple">
-            <div class="title">For Both</div>
-            <p>12-week pilot = low-risk validation with clear go/no-go metrics</p>
+          <div>
+            <table>
+              <tr>
+                <td>FTEs on Vendor Inquiries</td>
+                <td class="text-right font-bold" id="ch-ftes">15</td>
+              </tr>
+              <tr>
+                <td>Portal Response Time</td>
+                <td class="text-right font-bold text-danger">2-3 days</td>
+              </tr>
+              <tr>
+                <td>Email Response Time</td>
+                <td class="text-right font-bold text-danger">5-10 days</td>
+              </tr>
+              <tr>
+                <td>Days Payable Outstanding</td>
+                <td class="text-right font-bold">58 days</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Business Case Validation Tab -->
-    <div id="validation" class="tab-content">
+    <!-- Proposed Solutions Tab -->
+    <div id="solutions" class="tab-content">
       <div class="grid-2 mb-24">
-        <div class="card">
-          <div class="flex items-center gap-16 mb-16">
-            <span class="badge badge-green">Quick Win</span>
+        <div class="solution-card">
+          <span class="solution-badge badge-quick">Quick Win</span>
+          <h3 class="mt-16">AI Vendor Communication Bot</h3>
+          <p class="text-muted mt-8">AI-powered chatbot that handles routine vendor inquiries in real-time, freeing your team to focus on complex issues and relationship management.</p>
+
+          <div class="mt-24">
+            <div class="font-bold mb-8">How It Works</div>
+            <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+              <li>• Vendors access the chatbot through your existing portal</li>
+              <li>• AI retrieves real-time invoice status and payment data from SAP</li>
+              <li>• Instant responses for routine queries (status, remittance, submission)</li>
+              <li>• Complex issues automatically escalated to your team</li>
+            </ul>
           </div>
-          <h3>Use Case 1: AI Vendor Communication Bot</h3>
 
-          <div class="section-title mt-24" style="font-size: 14px;">The Problem (Validated)</div>
-          <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
-            <li>• 15 FTEs currently manage vendor inquiries</li>
-            <li>• Response times: 2-3 days via portal, 5-10 days via email</li>
-            <li>• Most frequent: invoice status, payment remittance, submission process</li>
-          </ul>
+          <div class="target-grid">
+            <div class="target-item">
+              <div class="target-value">60-70%</div>
+              <div class="target-label">Query Deflection</div>
+            </div>
+            <div class="target-item">
+              <div class="target-value">&lt;5 min</div>
+              <div class="target-label">Response Time</div>
+            </div>
+            <div class="target-item">
+              <div class="target-value">20-30%</div>
+              <div class="target-label">AP Time Savings</div>
+            </div>
+          </div>
+        </div>
 
-          <div class="section-title mt-24" style="font-size: 14px;">Target Outcomes</div>
-          <table style="font-size: 14px;">
-            <tr>
-              <td>Deflection rate</td>
-              <td class="text-right font-bold text-success">60-70%</td>
-            </tr>
-            <tr>
-              <td>Response time</td>
-              <td class="text-right font-bold text-success">< 5 minutes</td>
-            </tr>
-            <tr>
-              <td>AP time savings</td>
-              <td class="text-right font-bold text-success">20-30%</td>
-            </tr>
-          </table>
+        <div class="solution-card">
+          <span class="solution-badge badge-strategic">Strategic Win</span>
+          <h3 class="mt-16">Order-to-Cash AI Automation</h3>
+          <p class="text-muted mt-8">AI identifies engineering change notices, calculates pricing impacts, and generates invoice drafts for Finance review—accelerating your cash collection cycle.</p>
 
-          <div class="talk-track mt-24">
-            "Mario, based on the inquiry data your team shared, does a 60-70% deflection rate for these four query types feel achievable?"
+          <div class="mt-24">
+            <div class="font-bold mb-8">How It Works</div>
+            <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
+              <li>• AI monitors SAP for engineering change notices (ECNs)</li>
+              <li>• Automatically extracts pricing changes and affected invoices</li>
+              <li>• Generates invoice drafts with calculated adjustments</li>
+              <li>• Finance team reviews and approves via Power Apps interface</li>
+            </ul>
+          </div>
+
+          <div class="target-grid">
+            <div class="target-item">
+              <div class="target-value">30-40%</div>
+              <div class="target-label">Cycle Time Reduction</div>
+            </div>
+            <div class="target-item">
+              <div class="target-value">80%+</div>
+              <div class="target-label">AI Accuracy</div>
+            </div>
+            <div class="target-item">
+              <div class="target-value">$11.7M</div>
+              <div class="target-label">Working Capital Freed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Technology Stack</h3>
+        <p class="text-muted mb-16">Built on proven enterprise technologies with direct integration to your existing systems:</p>
+        <div class="tech-stack">
+          <span class="tech-item">Azure AI Foundry</span>
+          <span class="tech-item">SAP S/4HANA APIs</span>
+          <span class="tech-item">Microsoft Power Apps</span>
+          <span class="tech-item">Azure Functions</span>
+          <span class="tech-item">Azure Document Intelligence</span>
+        </div>
+        <div class="callout callout-green mt-24">
+          <h4>Why This Stack?</h4>
+          <p>These technologies integrate directly with your existing SAP and Microsoft environment, minimizing implementation risk and enabling your IT team to maintain the solution long-term.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Approach Tab -->
+    <div id="approach" class="tab-content">
+      <div class="card mb-24">
+        <h3>12-Week Parallel Pilot</h3>
+        <p class="text-muted mb-24">We'll implement both solutions in parallel, with clear milestones and a go/no-go decision point at week 12.</p>
+
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Discovery & Setup (Weeks 1-2)</h4>
+            <p>Kickoff workshop, SAP API configuration, Azure environment setup, and success metrics definition. We'll work closely with your team to identify sample ECNs and map the highest-volume vendor queries.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>AI Development & Integration (Weeks 3-5)</h4>
+            <p>Build the data pipelines from SAP, configure AI models, develop prompt engineering for ECN analysis, and create the invoice draft generation logic.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>UI & Testing (Weeks 6-8)</h4>
+            <p>Deploy Power Apps interface for invoice review, implement the vendor chatbot, conduct end-to-end testing, and run UAT with your Finance team.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Live Pilot & Measurement (Weeks 9-12)</h4>
+            <p>Process 100+ invoices through the AI workflow, measure deflection rates on the chatbot, collect metrics, and prepare recommendations for Phase 2.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Deployment Options</h3>
+          <div class="info-box info-blue">
+            <div class="title">Option A: Provectus Hosted</div>
+            <p>Faster deployment, SaaS subscription model, we handle infrastructure and updates. APIs connect securely to your SAP.</p>
+          </div>
+          <div class="info-box info-green">
+            <div class="title">Option B: In-House</div>
+            <p>Full IT governance, complete data residency in your environment, your team manages long-term. Adds 2-3 weeks to timeline.</p>
           </div>
         </div>
 
         <div class="card">
-          <div class="flex items-center gap-16 mb-16">
-            <span class="badge badge-blue">Strategic Win</span>
-          </div>
-          <h3>Use Case 2: Order-to-Cash AI Automation</h3>
-
-          <div class="section-title mt-24" style="font-size: 14px;">The Problem (Validated)</div>
-          <ul style="list-style: none; font-size: 14px; color: var(--text-secondary);">
-            <li>• <span id="val-receivables">$70M</span> trapped in outstanding receivables</li>
-            <li>• DSO of <span id="val-dso">60</span> days (industry benchmark: 45-50)</li>
-            <li>• Invoice delays of 3-7 days from ECN changes</li>
-          </ul>
-
-          <div class="section-title mt-24" style="font-size: 14px;">Target Outcomes</div>
+          <h3>Success Metrics</h3>
+          <p class="text-muted mb-16">We'll measure and report on these KPIs throughout the pilot:</p>
           <table style="font-size: 14px;">
             <tr>
               <td>Invoice cycle time</td>
-              <td class="text-right font-bold text-success">30-40% reduction</td>
+              <td class="text-right font-bold">Target: 30-40% reduction</td>
             </tr>
             <tr>
-              <td>AI accuracy</td>
-              <td class="text-right font-bold text-success">80%+ vs manual</td>
+              <td>AI accuracy vs. manual</td>
+              <td class="text-right font-bold">Target: 80%+</td>
             </tr>
             <tr>
-              <td>Working capital</td>
-              <td class="text-right font-bold text-success">Faster unlock</td>
+              <td>Query deflection rate</td>
+              <td class="text-right font-bold">Target: 60-70%</td>
+            </tr>
+            <tr>
+              <td>Vendor response time</td>
+              <td class="text-right font-bold">Target: &lt;5 minutes</td>
+            </tr>
+            <tr>
+              <td>Finance team satisfaction</td>
+              <td class="text-right font-bold">Target: Positive UAT feedback</td>
             </tr>
           </table>
-
-          <div class="talk-track mt-24">
-            "Andreas, if we reduce invoice cycle time by even 30%, you're looking at accelerating collection on that $70M in receivables. A 10-day DSO improvement could free up approximately $11-12M in working capital."
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Investment Summary</h3>
-        <div class="grid-3">
-          <div>
-            <div class="metric-label">Investment Range</div>
-            <div class="metric-value" id="val-investment">$260K-$370K</div>
-            <div class="metric-sub">Average: $300K</div>
-          </div>
-          <div>
-            <div class="metric-label">Duration</div>
-            <div class="metric-value" id="val-weeks">12 weeks</div>
-            <div class="metric-sub">Range: 10-14 weeks</div>
-          </div>
-          <div>
-            <div class="metric-label">Monthly Run Rate</div>
-            <div class="metric-value">~$100K</div>
-            <div class="metric-sub">3-month engagement</div>
-          </div>
-        </div>
-
-        <div class="callout callout-green mt-24">
-          <h4>Value vs. Investment Frame</h4>
-          <p><strong>Investment:</strong> ~$300K &nbsp;|&nbsp; <strong>Year 1 Value:</strong> $650K+ &nbsp;|&nbsp; <strong>Payback:</strong> 4-6 months post-pilot</p>
         </div>
       </div>
     </div>
 
-    <!-- Objection Handlers Tab -->
-    <div id="objections" class="tab-content">
-      <div class="card mb-24">
-        <h3>Common Objections & Responses</h3>
-        <p class="text-muted">Click each objection to see the recommended response.</p>
-      </div>
-
-      <div class="objection-card">
-        <div class="objection-header" onclick="toggleObjection(this)">
-          "The budget is higher than expected"
-          <span>+</span>
-        </div>
-        <div class="objection-body">
-          <div class="talk-track">
-            "I understand. Let me reframe this: the $300K investment is for a 12-week pilot that addresses two use cases in parallel. If we hit our targets – 60% vendor inquiry deflection and 30% invoice cycle time reduction – the ROI is substantial. We're also structured for a clear go/no-go at 12 weeks. You're not committing to a multi-year transformation; you're buying validated learning and measurable results."
-          </div>
-          <div class="info-box info-blue mt-16">
-            <div class="title">Alternative Offer</div>
-            <p>"We could phase this differently – start with just the Vendor Communication Bot at roughly half the investment, prove value in 8 weeks, then decide on O2C. But given the working capital impact of O2C, running them in parallel gives you faster time-to-value on your biggest dollar opportunity."</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="objection-card">
-        <div class="objection-header" onclick="toggleObjection(this)">
-          "Can we do this faster/cheaper?"
-          <span>+</span>
-        </div>
-        <div class="objection-body">
-          <div class="talk-track">
-            "The 12-week timeline is already aggressive. Weeks 1-2 are discovery and setup – that's non-negotiable for SAP integration. We've scoped to minimum viable – ECN-focused invoicing, not the full invoice population; high-volume vendor queries, not every edge case. Cutting further risks either quality or measurable results at the end."
-          </div>
-        </div>
-      </div>
-
-      <div class="objection-card">
-        <div class="objection-header" onclick="toggleObjection(this)">
-          "We need to socialize this internally"
-          <span>+</span>
-        </div>
-        <div class="objection-body">
-          <div class="talk-track">
-            "Absolutely. What would be most helpful for you to share with [stakeholder]? We can provide a one-page summary, the ROI model, or join a brief call if that would help move things forward."
-          </div>
-          <div class="info-box info-green mt-16">
-            <div class="title">Follow-up Question</div>
-            <p>"What's the timeline for that internal discussion? We'd like to finalize the SOW by mid-March to hit an April 6 kick-off."</p>
-          </div>
-          <div class="mt-16">
-            <a href="deal-summary.html" class="btn btn-secondary">View Shareable One-Pager →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="objection-card">
-        <div class="objection-header" onclick="toggleObjection(this)">
-          "What if it doesn't work?"
-          <span>+</span>
-        </div>
-        <div class="objection-body">
-          <div class="talk-track">
-            "That's exactly why we structured this as a 12-week pilot with clear success metrics. At week 12, we'll have processed 100+ invoices through the AI workflow and measured deflection rates on the chatbot. If we don't hit 80% accuracy on invoice generation or 60% deflection, you'll know – and you'll have learned exactly where the gaps are for any future investment. The pilot is designed to de-risk, not lock you in."
-          </div>
-        </div>
-      </div>
-
-      <div class="objection-card">
-        <div class="objection-header" onclick="toggleObjection(this)">
-          "We're also talking to other vendors"
-          <span>+</span>
-        </div>
-        <div class="objection-body">
-          <div class="talk-track">
-            "That's smart due diligence. I'd encourage you to compare a few things: First, specificity of approach – we've already mapped your O2C process, identified ECN as the key bottleneck, and scoped to your SAP environment. Second, risk structure – our 12-week pilot with clear metrics means you're not locked into a long-term commitment. Third, time-to-value – with an April kick-off, you're seeing results by late June."
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Closing Strategy Tab -->
-    <div id="closing" class="tab-content">
-      <div class="card mb-24">
-        <h3>The Ask</h3>
-        <div class="talk-track">
-          "Andreas, based on what we've validated together, I believe we're aligned on the problem, the approach, and the value. Here's what I'd like to propose as next steps:
-          <br><br>
-          1. <strong>This week:</strong> Confirm scope alignment and budget range ($260-300K)<br>
-          2. <strong>By end of February:</strong> Complete MSA terms and conditions<br>
-          3. <strong>Early March:</strong> We deliver the SOW for your review<br>
-          4. <strong>Mid-March:</strong> Finalize both agreements<br>
-          5. <strong>April 6:</strong> Kick off
-          <br><br>
-          Does that timeline work for you? Is there anything that would prevent us from moving forward on this path?"
-        </div>
-      </div>
-
-      <div class="grid-2 mb-24">
-        <div class="card">
-          <h3>If They're Ready to Commit</h3>
-          <div class="talk-track">
-            "Excellent. Let's lock in the timeline. I'll have our team send over the MSA template this week, and we can schedule a brief call to walk through terms. Who on your side should be involved in that review?"
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>If They Need More Time</h3>
-          <div class="talk-track">
-            "I understand. What specific information would help you make a final decision? And what's a realistic timeline for you to complete your internal review? I want to make sure we're set up for an April kick-off."
-          </div>
-        </div>
-      </div>
-
+    <!-- FAQ Tab -->
+    <div id="faq" class="tab-content">
       <div class="card">
-        <h3>Listen For</h3>
-        <ul class="question-list">
-          <li>
-            <span class="question-num">1</span>
-            <span><strong>Budget approval authority</strong> – does Andreas need additional sign-off?</span>
-          </li>
-          <li>
-            <span class="question-num">2</span>
-            <span><strong>Procurement process</strong> – any vendor onboarding requirements?</span>
-          </li>
-          <li>
-            <span class="question-num">3</span>
-            <span><strong>Competing priorities</strong> – is there internal competition for budget/resources?</span>
-          </li>
-          <li>
-            <span class="question-num">4</span>
-            <span><strong>Technical concerns</strong> – any IT governance issues with deployment model?</span>
-          </li>
-        </ul>
-      </div>
+        <h3>Frequently Asked Questions</h3>
+        <p class="text-muted mb-24">Common questions about the pilot and implementation:</p>
 
-      <div class="card mt-24">
-        <h3>Key Questions to Ask MAHLE</h3>
-        <ul class="question-list">
-          <li>
-            <span class="question-num">1</span>
-            <span>"Are there any stakeholders beyond this room who need to approve the investment?"</span>
-          </li>
-          <li>
-            <span class="question-num">2</span>
-            <span>"Have you identified the Finance team members who would participate in UAT during weeks 6-8?"</span>
-          </li>
-          <li>
-            <span class="question-num">3</span>
-            <span>"On the deployment model – are you leaning toward Provectus-hosted or in-house?"</span>
-          </li>
-          <li>
-            <span class="question-num">4</span>
-            <span>"Is there anything about the business case or approach that doesn't feel right to you?"</span>
-          </li>
-          <li>
-            <span class="question-num">5</span>
-            <span>"What would make this a clear 'yes' for you today?"</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Meeting Flow Tab -->
-    <div id="flow" class="tab-content">
-      <div class="card">
-        <h3>Recommended Meeting Flow (60 minutes)</h3>
-        <div class="meeting-flow">
-          <div class="flow-item">
-            <span class="flow-time">0-5 min</span>
-            <span class="flow-topic">Opening, agenda confirmation</span>
-            <span class="flow-owner">You</span>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How does the AI integrate with our SAP instances?
+            <span>+</span>
           </div>
-          <div class="flow-item">
-            <span class="flow-time">5-15 min</span>
-            <span class="flow-topic">Business case validation – review numbers together</span>
-            <span class="flow-owner">You + Mario</span>
-          </div>
-          <div class="flow-item">
-            <span class="flow-time">15-25 min</span>
-            <span class="flow-topic">Investment and timeline walkthrough</span>
-            <span class="flow-owner">You</span>
-          </div>
-          <div class="flow-item">
-            <span class="flow-time">25-35 min</span>
-            <span class="flow-topic">Q&A, objection handling</span>
-            <span class="flow-owner">Andreas/Mario</span>
-          </div>
-          <div class="flow-item">
-            <span class="flow-time">35-45 min</span>
-            <span class="flow-topic">Deployment model decision</span>
-            <span class="flow-owner">Mario</span>
-          </div>
-          <div class="flow-item">
-            <span class="flow-time">45-55 min</span>
-            <span class="flow-topic">Next steps and commitment</span>
-            <span class="flow-owner">You</span>
-          </div>
-          <div class="flow-item">
-            <span class="flow-time">55-60 min</span>
-            <span class="flow-topic">Close and action items</span>
-            <span class="flow-owner">You</span>
+          <div class="faq-answer">
+            <p>We connect via SAP's standard APIs (RFC/BAPI or OData depending on your configuration). The AI reads data from SAP but doesn't modify your master data—invoice drafts are created separately and only posted after your team approves them. We'll work with your IT team during Discovery to configure secure API access.</p>
           </div>
         </div>
-      </div>
 
-      <div class="callout callout-blue mt-24">
-        <h4>Don't Forget</h4>
-        <p>
-          • Have the <a href="deal-summary.html">deal summary one-pager</a> ready to share<br>
-          • Have the <a href="roi-analysis.html">ROI analysis</a> ready for detailed questions<br>
-          • Confirm who will own the MSA review on MAHLE's side<br>
-          • Get a calendar hold for the SOW review meeting before leaving
-        </p>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What happens if the AI makes a mistake on an invoice?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Every AI-generated invoice draft goes through a human review step via the Power Apps interface. Your Finance team can approve, reject, or modify any draft before it's posted. The AI learns from corrections over time, improving accuracy. We're targeting 80%+ accuracy during the pilot, meaning 8 out of 10 invoices require no changes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Can we handle multiple SAP instances?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We understand you operate three SAP instances in North America (two legacy R/3 and one S/4). The pilot will focus on the S/4 instance initially, with the architecture designed to extend to the R/3 systems in Phase 2 if the pilot is successful.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What if we don't hit the target metrics?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The 12-week pilot is designed to validate the approach with real data and real processes. At week 12, we'll have clear metrics on accuracy, cycle time, and deflection rates. If we don't hit targets, you'll understand exactly where the gaps are and can make an informed decision about next steps. There's no long-term commitment—the pilot is designed to de-risk the investment.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Who from MAHLE needs to be involved?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>We'll need engagement from: (1) Finance team members who handle invoicing and vendor inquiries—for requirements and UAT, (2) IT team—for SAP API access and environment setup, (3) An executive sponsor—for decisions and removing blockers. We estimate 5-10 hours per week from your team during the pilot, with the heaviest involvement during Discovery (weeks 1-2) and UAT (weeks 6-8).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How do you handle data security?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>All data stays within your Azure tenant or ours (depending on deployment option). We use encrypted connections for all SAP API calls, and no invoice or vendor data is stored outside the processing pipeline. If you choose in-house deployment, everything remains in your environment. We can provide detailed security documentation during the MSA process.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What's the long-term cost after the pilot?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>If the pilot is successful and you want to scale, we'll provide a Phase 2 proposal with options for: (1) Continued Provectus management as a managed service, (2) Knowledge transfer to your team with support agreement, or (3) Hybrid model. Ongoing costs depend on invoice volume and support level, but typically run 30-40% of the initial pilot investment annually.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -498,12 +496,12 @@
       event.target.classList.add('active');
     }
 
-    // Objection toggle
-    function toggleObjection(header) {
-      const body = header.nextElementSibling;
-      const icon = header.querySelector('span');
-      body.classList.toggle('show');
-      icon.textContent = body.classList.contains('show') ? '−' : '+';
+    // FAQ toggle
+    function toggleFaq(question) {
+      const answer = question.nextElementSibling;
+      const icon = question.querySelector('span');
+      answer.classList.toggle('show');
+      icon.textContent = answer.classList.contains('show') ? '−' : '+';
     }
 
     // Load ROM data
@@ -512,13 +510,10 @@
         const response = await fetch('data/rom-data.json');
         const data = await response.json();
         const business = data.businessCase;
-        const summary = data.summary;
 
-        document.getElementById('val-receivables').textContent = '$' + (business.receivables / 1000000) + 'M';
-        document.getElementById('val-dso').textContent = business.currentDSO;
-        document.getElementById('val-investment').textContent =
-          '$' + (summary.investmentLow / 1000) + 'K-$' + (summary.investmentHigh / 1000) + 'K';
-        document.getElementById('val-weeks').textContent = summary.weeksAvg + ' weeks';
+        document.getElementById('ch-dso').textContent = business.currentDSO + ' days';
+        document.getElementById('ch-receivables').textContent = '$' + (business.receivables / 1000000) + 'M';
+        document.getElementById('ch-ftes').textContent = business.vendorInquiryFTEs;
       } catch (error) {
         console.error('Error loading data:', error);
       }

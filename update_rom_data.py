@@ -146,12 +146,11 @@ def extract_rom_data(excel_path):
             {"name": "Live Pilot", "weeks": "9-12", "description": "Process 100+ invoices, measure results, prepare recommendations"}
         ],
         "milestones": [
-            {"date": "February 2026", "event": "Scope & budget alignment"},
-            {"date": "End of February", "event": "MSA terms complete"},
+            {"date": "February", "event": "MSA terms complete"},
             {"date": "Early March", "event": "SOW delivered"},
-            {"date": "Mid-March", "event": "Finalize agreements"},
-            {"date": "April 6", "event": "Project kick-off"},
-            {"date": "Late June", "event": "Pilot live"}
+            {"date": "Mid-March", "event": "Complete documentation"},
+            {"date": "April", "event": "Project kick-off"},
+            {"date": "June", "event": "Pilot live"}
         ]
     }
 

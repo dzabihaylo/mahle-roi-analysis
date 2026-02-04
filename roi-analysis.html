@@ -322,22 +322,22 @@
         </div>
         <div class="flex justify-center gap-24 mt-16 flex-wrap" style="justify-content: center;">
           <div class="flex items-center gap-8">
-            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #E63312;"></div>
             <span style="font-size: 14px;">Investment Phase (M1-M3)</span>
           </div>
           <div class="flex items-center gap-8">
-            <div style="width: 12px; height: 12px; border-radius: 50%; background: #eab308;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #D97706;"></div>
             <span style="font-size: 14px;">Value Ramp (M4-M6)</span>
           </div>
           <div class="flex items-center gap-8">
-            <div style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #0D7A3E;"></div>
             <span style="font-size: 14px;">Positive ROI (M7+)</span>
           </div>
         </div>
       </div>
 
       <div class="grid-3 mb-24">
-        <div class="card" style="border-left: 4px solid #ef4444;">
+        <div class="card" style="border-left: 4px solid #E63312;">
           <h3>Pilot Phase</h3>
           <p class="text-muted mb-16" style="font-size: 14px;">Months 1-3</p>
           <div class="timeline-item"><span>Discovery & Setup</span><span>Weeks 1-2</span></div>
@@ -349,7 +349,7 @@
           </div>
         </div>
 
-        <div class="card" style="border-left: 4px solid #eab308;">
+        <div class="card" style="border-left: 4px solid #D97706;">
           <h3>Value Ramp</h3>
           <p class="text-muted mb-16" style="font-size: 14px;">Months 4-6</p>
           <div class="timeline-item"><span>Full deployment</span><span>Month 4</span></div>
@@ -360,7 +360,7 @@
           </div>
         </div>
 
-        <div class="card" style="border-left: 4px solid #22c55e;">
+        <div class="card" style="border-left: 4px solid #0D7A3E;">
           <h3>Steady State</h3>
           <p class="text-muted mb-16" style="font-size: 14px;">Months 7-12</p>
           <div class="timeline-item"><span>Break-even</span><span>Month 7</span></div>
@@ -373,7 +373,7 @@
       </div>
 
       <div class="callout callout-blue">
-        <h4>Key Takeaway for Andreas</h4>
+        <h4>Key Takeaway</h4>
         <p>The $300K pilot investment pays for itself within 4 months of going live. By month 12, you're looking at a net positive of $350K+ with ongoing annual value of $650K. This is a low-risk way to validate AI capabilities while generating real business impact.</p>
       </div>
     </div>
@@ -381,7 +381,7 @@
     <!-- Footer -->
     <div class="footer">
       <p>MAHLE AI Finance Transformation | Provectus | February 2026</p>
-      <p class="mt-16" style="font-size: 12px;">Data sourced from ROM v1.0 • Last updated: <span id="last-updated">2026-02-03</span></p>
+      <p class="mt-16" style="font-size: 12px;">Last updated: <span id="last-updated">2026-02-03</span></p>
     </div>
   </div>
 
@@ -419,11 +419,11 @@
           datasets: [{
             label: 'Investment',
             data: [300, 0, 0],
-            backgroundColor: '#ef4444',
+            backgroundColor: '#E63312',
           }, {
             label: 'Value',
             data: [0, 650, 850],
-            backgroundColor: '#22c55e',
+            backgroundColor: '#0D7A3E',
           }]
         },
         options: {
@@ -444,7 +444,7 @@
         type: 'bar',
         data: {
           labels: ['Working Capital', 'AP Productivity', 'Process Acceleration'],
-          datasets: [{ data: [400, 180, 70], backgroundColor: ['#2563eb', '#16a34a', '#9333ea'] }]
+          datasets: [{ data: [400, 180, 70], backgroundColor: ['#00205B', '#0D7A3E', '#E63312'] }]
         },
         options: {
           indexAxis: 'y',
@@ -472,14 +472,14 @@
           datasets: [{
             label: 'DSO (days)',
             data: [60, 55, 50, 45],
-            backgroundColor: '#3b82f6',
+            backgroundColor: '#00205B',
             yAxisID: 'y',
           }, {
             label: 'Trapped Capital ($M)',
             data: [70, 64.2, 58.3, 52.5],
             type: 'line',
-            borderColor: '#ef4444',
-            backgroundColor: '#ef4444',
+            borderColor: '#E63312',
+            backgroundColor: '#E63312',
             borderWidth: 3,
             pointRadius: 5,
             yAxisID: 'y1',
@@ -508,7 +508,7 @@
           datasets: [{
             label: 'Cumulative ($K)',
             data: [-100, -200, -300, -250, -150, -50, 50, 150, 250, 400],
-            borderColor: '#22c55e',
+            borderColor: '#0D7A3E',
             backgroundColor: 'rgba(34, 197, 94, 0.1)',
             borderWidth: 3,
             fill: true,
@@ -516,9 +516,9 @@
             pointRadius: 6,
             pointBackgroundColor: (context) => {
               const value = context.raw;
-              if (value < -200) return '#ef4444';
-              if (value < 0) return '#eab308';
-              return '#22c55e';
+              if (value < -200) return '#E63312';
+              if (value < 0) return '#D97706';
+              return '#0D7A3E';
             }
           }]
         },

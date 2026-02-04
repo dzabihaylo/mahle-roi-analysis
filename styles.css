@@ -1,29 +1,42 @@
 /* MAHLE AI Finance Transformation - Shared Styles */
+/* Brand colors based on MAHLE corporate identity */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary: #64748b;
-  --success: #16a34a;
-  --success-light: #22c55e;
-  --warning: #eab308;
-  --danger: #ef4444;
-  --purple: #9333ea;
+  /* MAHLE Brand Colors */
+  --primary: #00205B;
+  --primary-dark: #001845;
+  --primary-light: #003380;
+  --secondary: #5A6A7A;
 
-  --bg-primary: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-highlight: #f0fdf4;
+  /* Accent Colors */
+  --accent: #E63312;
+  --accent-dark: #C42A0F;
+  --success: #0D7A3E;
+  --success-light: #10A050;
+  --warning: #D97706;
+  --danger: #DC2626;
 
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  /* Backgrounds */
+  --bg-primary: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-highlight: #E8F4EC;
+  --bg-navy-light: #E8EBF2;
 
-  --border: #e2e8f0;
-  --shadow: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+  /* Text */
+  --text-primary: #00205B;
+  --text-secondary: #5A6A7A;
+  --text-muted: #8A95A5;
 
-  --radius: 12px;
-  --radius-sm: 8px;
+  /* Borders & Shadows */
+  --border: #D1D8E0;
+  --shadow: 0 1px 3px rgba(0,32,91,0.08);
+  --shadow-lg: 0 4px 12px rgba(0,32,91,0.12);
+
+  /* Radius - slightly tighter for industrial feel */
+  --radius: 8px;
+  --radius-sm: 4px;
 }
 
 * {
@@ -33,10 +46,11 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 /* Navigation */
@@ -70,7 +84,7 @@ body {
 .nav-brand-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--primary), var(--purple));
+  background: var(--primary);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -78,6 +92,7 @@ body {
   color: white;
   font-weight: 700;
   font-size: 14px;
+  letter-spacing: -0.5px;
 }
 
 .nav-brand-text {
@@ -178,10 +193,10 @@ body {
   margin-bottom: 16px;
 }
 
-.card-icon-blue { background: #eff6ff; }
-.card-icon-green { background: #f0fdf4; }
-.card-icon-purple { background: #faf5ff; }
-.card-icon-orange { background: #fff7ed; }
+.card-icon-blue { background: var(--bg-navy-light); }
+.card-icon-green { background: #E8F4EC; }
+.card-icon-purple { background: #FCE8E6; }
+.card-icon-orange { background: #FEF3E2; }
 
 /* Grids */
 .grid-2 {
@@ -246,17 +261,17 @@ body {
   font-weight: 500;
 }
 
-.badge-blue { background: #eff6ff; color: var(--primary); }
-.badge-green { background: #f0fdf4; color: var(--success); }
-.badge-purple { background: #faf5ff; color: var(--purple); }
-.badge-orange { background: #fff7ed; color: #ea580c; }
+.badge-blue { background: var(--bg-navy-light); color: var(--primary); }
+.badge-green { background: #E8F4EC; color: var(--success); }
+.badge-purple { background: #FCE8E6; color: var(--accent); }
+.badge-orange { background: #FEF3E2; color: var(--warning); }
 
 /* Colors */
 .text-primary { color: var(--primary); }
 .text-success { color: var(--success); }
 .text-warning { color: var(--warning); }
 .text-danger { color: var(--danger); }
-.text-purple { color: var(--purple); }
+.text-purple { color: var(--accent); }
 .text-muted { color: var(--text-muted); }
 
 /* Tables */
@@ -327,8 +342,8 @@ th {
   height: 100%;
 }
 
-.progress-red { background: var(--danger); }
-.progress-green { background: var(--success-light); }
+.progress-red { background: var(--accent); }
+.progress-green { background: var(--success); }
 .progress-blue { background: var(--primary); }
 
 /* Info Boxes */
@@ -347,21 +362,21 @@ th {
 
 .info-box p { font-size: 14px; }
 
-.info-blue { background: #eff6ff; }
-.info-blue .title { color: #1e40af; }
-.info-blue p { color: #1d4ed8; }
+.info-blue { background: var(--bg-navy-light); }
+.info-blue .title { color: var(--primary); }
+.info-blue p { color: var(--primary-light); }
 
-.info-green { background: #f0fdf4; }
-.info-green .title { color: #166534; }
-.info-green p { color: #15803d; }
+.info-green { background: #E8F4EC; }
+.info-green .title { color: var(--success); }
+.info-green p { color: var(--success-light); }
 
-.info-purple { background: #faf5ff; }
-.info-purple .title { color: #6b21a8; }
-.info-purple p { color: #7e22ce; }
+.info-purple { background: #FCE8E6; }
+.info-purple .title { color: var(--accent-dark); }
+.info-purple p { color: var(--accent); }
 
-.info-orange { background: #fff7ed; }
-.info-orange .title { color: #c2410c; }
-.info-orange p { color: #ea580c; }
+.info-orange { background: #FEF3E2; }
+.info-orange .title { color: #B45309; }
+.info-orange p { color: var(--warning); }
 
 /* Callouts */
 .callout {
@@ -371,20 +386,20 @@ th {
 }
 
 .callout-blue {
-  background: #eff6ff;
+  background: var(--bg-navy-light);
   border-left: 4px solid var(--primary);
 }
 
-.callout-blue h4 { color: #1e40af; margin-bottom: 8px; }
-.callout-blue p { color: #1d4ed8; }
+.callout-blue h4 { color: var(--primary); margin-bottom: 8px; }
+.callout-blue p { color: var(--primary-light); }
 
 .callout-green {
-  background: #f0fdf4;
+  background: #E8F4EC;
   border-left: 4px solid var(--success);
 }
 
-.callout-green h4 { color: #166534; margin-bottom: 8px; }
-.callout-green p { color: #15803d; }
+.callout-green h4 { color: var(--success); margin-bottom: 8px; }
+.callout-green p { color: var(--success-light); }
 
 /* Sections */
 .section {

@@ -159,33 +159,6 @@
         </div>
       </div>
 
-      <!-- Investment & Timeline -->
-      <div class="summary-section">
-        <div class="summary-title">Investment & Timeline</div>
-        <div class="grid-4">
-          <div>
-            <div class="metric-label">Investment</div>
-            <div class="metric-value" id="ds-investment" style="font-size: 24px;">$300K</div>
-            <div class="metric-sub" id="ds-investment-range">Range: $260K-$370K</div>
-          </div>
-          <div>
-            <div class="metric-label">Duration</div>
-            <div class="metric-value" id="ds-weeks" style="font-size: 24px;">12 weeks</div>
-            <div class="metric-sub">Range: 10-14 weeks</div>
-          </div>
-          <div>
-            <div class="metric-label">Monthly Rate</div>
-            <div class="metric-value" style="font-size: 24px;">~$100K</div>
-            <div class="metric-sub">3-month engagement</div>
-          </div>
-          <div>
-            <div class="metric-label">Engagement</div>
-            <div class="metric-value" style="font-size: 24px;">Fixed Price</div>
-            <div class="metric-sub">Outcome-based delivery</div>
-          </div>
-        </div>
-      </div>
-
       <!-- Expected Value -->
       <div class="summary-section">
         <div class="summary-title">Expected Value</div>
@@ -354,12 +327,6 @@
         // Current state
         document.getElementById('ds-dso').textContent = business.currentDSO + ' days';
         document.getElementById('ds-receivables').textContent = formatCurrency(business.receivables);
-
-        // Investment
-        document.getElementById('ds-investment').textContent = formatCurrency(summary.investmentAvg);
-        document.getElementById('ds-investment-range').textContent =
-          'Range: ' + formatCurrency(summary.investmentLow) + '-' + formatCurrency(summary.investmentHigh);
-        document.getElementById('ds-weeks').textContent = summary.weeksAvg + ' weeks';
 
         // Value
         document.getElementById('ds-wc-value').textContent = formatCurrency(value.workingCapitalValue);
